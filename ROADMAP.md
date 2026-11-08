@@ -31,6 +31,8 @@ Python is the available implementation language. No .NET tooling is required.
 
 M0's publication gate is evaluated against actual repository visibility and
 hosted CI. The journal records observed outcomes, not inferred completion.
+M0 passed for the initial publication: public visibility, a verified signed
+commit and green hosted regression/security checks are recorded in the journal.
 The next implementation item is M1 completed-review intake, which is research
 infrastructure, not ticket classification. Start with failure tests for missing
 rows and invalid event references; then add descriptive agreement calculations.
