@@ -5,6 +5,9 @@ Recommendation remains **NARROW**. This is a research packet and integrity check
 not a support analyzer or a released product. There are no measured accuracy,
 customer-value or market-demand results.
 
+See the [discovery completion decision](docs/completion_decision.md) for completed
+work, evidence boundaries and the exact inputs still required.
+
 ## Current deliverables
 
 1. Twenty-four synthetic histories with 103 observable events in data/cases.json.
