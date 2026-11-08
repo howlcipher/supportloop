@@ -1,0 +1,47 @@
+# Findings and bugs report
+
+Scope: source inspection and local reproductions, November 8, 2026.
+Research gaps are distinguished from reproduced software defects. No finding
+here alleges misconduct by a support vendor or proves unmet market demand.
+
+## Reproduced and corrected in packet 0.2.0
+
+| ID | Finding and observable failure | Correction | Regression evidence |
+| --- | --- | --- | --- |
+| BUG-001 | A checkout without author_material/ failed before verification could finish | Public manifest and verifier no longer require the unpublished author expectations | test_public_checkout_requires_no_author_expectations; clean public-export regression |
+| BUG-002 | synthetic=false, incorrect case_count and an unsupported manifest version were accepted | Strict manifest fields and supported packet metadata are required | test_rejects_manifest_metadata_inconsistency |
+| BUG-003 | Duplicate JSON keys were silently overwritten, allowing ambiguous provenance metadata | A shared bounded JSON reader rejects duplicate keys and nonfinite constants | test_rejects_duplicate_json_keys; test_nonfinite_json_is_rejected |
+| BUG-004 | A CSV data row with an extra cell passed after the file was relocked | Validate exact CSV header and every row width before blank-field checks | test_rejects_extra_csv_cells |
+| BUG-005 | Splitting CSV into lines discarded an embedded quoted newline, accepting it as a blank review answer | Preserve CSV newline semantics with a shared in-memory text stream | test_quoted_newline_is_not_a_blank_review_answer |
+
+New failure tests were run against the prior implementation before fixes: five
+failing assertions and one missing-file error exposed these four defect groups.
+An additional targeted red test reproduced BUG-005 before its correction.
+The original 15 regression contracts were retained. Additional checks exercise
+path escapes and sanitized CLI errors. Author hypotheses remain local; their
+absence is an intentional public contract change, not weakened label validation.
+
+## Open work, ordered by priority
+
+| ID | Priority/type | Finding | Next action and acceptance |
+| --- | --- | --- | --- |
+| GAP-001 | P1 engineering gap | Completed review intake is absent | Add strict CSV and metadata intake with failing tests for missing/duplicate cases, invalid dimensions, invalid references and incompatible rubric/packet identities. Reject incomplete submissions rather than dropping rows. |
+| GAP-002 | P1 engineering gap | No descriptive agreement calculator | Add raw agreement, full confusion matrix, marginals and kappa; preserve insufficient_evidence as a category; return undefined when expected agreement is one. Model results and self-declared identity must never auto-pass a human gate. Depends on GAP-001. |
+| RES-001 | P1 research dependency | No independent human labels | Collect two reviews only when people are available. Record independence/exposure and preserve original returns. AI or author labels cannot resolve this dependency. |
+| RES-002 | P2 prior-art uncertainty | Vendor documentation establishes feature overlap, not measured adequacy | Compare a configured existing rubric against the constrained target workflow before writing an analyzer. Record unavailable access honestly. |
+| RES-003 | P2 external validity | The 24 authored synthetic cases are selected and intentionally clear | Obtain independently labeled, consented and more varied cases before generalizing. No production error-rate or market-demand claims from this set. |
+| RES-004 | P2 observability limit | Customer-visible exports may omit the decisive outcome evidence | Measure unknown/abstention rates and human review burden. Do not force resolution labels. |
+
+## Retained limitations, not disguised as fixed bugs
+
+Hashes detect drift; a writer who can replace both content and manifest can
+forge them. The tool is not an authenticity service. Public packet separation
+does not prove reviewer independence. Local source, tests and semantic
+expectations share an author, so passing regression is not independent semantic
+validation. Dependency and secret scans have bounded detection, not proof that
+the repository is free of every security defect.
+
+HowlProof's documentation inventory includes normative instructions and evidence
+limits as unverified absolute phrasings. Its byte comparisons are useful but
+do not certify ticket outcomes. Its recorded overall verdict for preparation
+was INSUFFICIENT_EVIDENCE; do not present it as product approval.

@@ -1,0 +1,16 @@
+schema_version = 1
+name = "supportloop"
+project_type = ["python", "research"]
+skills = ["python", "technical_writing", "quality_assurance"]
+
+[context]
+include = ["README.md", "docs/**/*.md", "scripts/**/*.py", "tests/**/*.py"]
+exclude = ["author_material/**", "review_returns/**", "runs/**"]
+
+[commands]
+test = ["python3", "-m", "unittest", "discover", "-s", "tests", "-v"]
+build = ["python3", "scripts/verify_packet.py"]
+lint = ["python3", "-m", "flake8", "scripts", "tests"]
+
+[security]
+capabilities = ["filesystem:repository", "process:project_commands"]

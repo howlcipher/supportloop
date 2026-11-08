@@ -1,0 +1,21 @@
+{
+  "objective": "Challenge the feasibility of portable evidence-based support auditing before building an analyzer.",
+  "origin": {
+    "component": "codex",
+    "provider": "OpenAI"
+  },
+  "ideas": [
+    {
+      "id": "agreement",
+      "text": "Independent humans can distinguish visible handling defects from justified denials and unknown outcomes under a shared rubric. Falsify with blinded review and control-case disagreements."
+    },
+    {
+      "id": "prior_art",
+      "text": "An existing configured QA rubric may already meet the portable-audit need. Test adequacy before product implementation."
+    },
+    {
+      "id": "observability",
+      "text": "Customer-visible exports may leave too many outcomes unknown for useful verification. Report unknown cases and review burden rather than forcing verdicts."
+    }
+  ]
+}

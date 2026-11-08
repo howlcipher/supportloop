@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+runs/
+review_returns/
+author_material/
+private_evidence/
+.coverage
+htmlcov/
+dist/

@@ -1,0 +1,34 @@
+{
+  "task_id": "SL-FEASIBILITY-001",
+  "repository": ".",
+  "objective": "Prepare and structurally verify a synthetic independent-human feasibility packet; do not implement a support analyzer",
+  "acceptance_criteria": [
+    "24 synthetic histories and two blank blinded packets",
+    "Rubric and explicit pending human gate",
+    "Tests packet integrity and lint pass"
+  ],
+  "constraints": [
+    "No publication private evidence model dispatch or fabricated labels"
+  ],
+  "task_class": "test_improvement",
+  "risk_level": "low",
+  "required_skills": [],
+  "recommended_reasoning_tier": "tier_2",
+  "preferred_agent": null,
+  "recommended_agent": null,
+  "actual_agent": null,
+  "effective_implementer_resource_id": null,
+  "dispatch_resource_id": null,
+  "is_override": null,
+  "override_reason": null,
+  "allowed_tools": [],
+  "prohibited_actions": [],
+  "verification_requirements": [],
+  "reviewer_requirements": [],
+  "human_approval_requirements": [],
+  "current_state": "discovered",
+  "task_journal_path": null,
+  "allowed_paths": [],
+  "metadata": {},
+  "schema": "ai.task_spec/v1"
+}
