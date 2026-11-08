@@ -1,0 +1,15 @@
+schema_version: 1
+artifact: supportloop_feasibility
+description: >-
+  Documentation claim inventory and reviewer rubric byte comparisons only.
+  No semantic evaluation or human-feasibility acceptance criteria are supplied.
+profiles:
+  - docs.claims
+docs:
+  claim_sources:
+    - README.md
+    - docs/rubric.md
+    - docs/evaluation_contract.md
+  synced_pairs:
+    - [docs/rubric.md, reviewer_packets/A/rubric.md]
+    - [docs/rubric.md, reviewer_packets/B/rubric.md]

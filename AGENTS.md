@@ -1,0 +1,27 @@
+# SupportLoop agent instructions
+
+Read README.md, docs/rubric.md and docs/evaluation_contract.md before work.
+Honor ~/.howlplane/.agents/rules/ and check ~/.howlplane/.agents/skills/.
+
+This is a public feasibility study, not a deployed product. All public cases are synthetic.
+Do not read author_material/ before a blinded review. Reviewer packets contain
+only observations. Author expectations are hypotheses, never independent labels.
+Do not identify model agreement as human agreement. No product analyzer until
+the human feasibility gate passes. Publication of this synthetic repository is
+authorized. Private evidence and real incident publication still require explicit
+consent for the material and destination. Author hypotheses and review returns
+stay ignored. Public verification must work without those local files.
+
+Use Python 3.11+ and standard library runtime dependencies for packet tooling.
+Run python3 -m unittest discover -s tests -v while changing validation behavior.
+The final gate is python3 scripts/verify_packet.py, unittest, and
+python3 -m flake8 scripts tests. See documentation/TESTING.md.
+
+Read ROADMAP.md and issues.md, take the highest-priority unblocked item, and
+update docs/journal.md at meaningful checkpoints. Reproduce a bug or define a
+new observable contract in tests before implementation. Use cohesive objects
+where they own state or invariants, and share validation logic instead of
+duplicating it. Avoid inheritance or abstractions without a concrete need.
+Retain compatibility entry points unless a documented migration is warranted.
+Run the complete configured regression on the final tree before pushing; verify
+hosted CI. Sign commits. No fabricated reviewers, metrics or permissions.

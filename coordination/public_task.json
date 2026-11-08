@@ -1,0 +1,35 @@
+{
+  "task_id": "SL-PUBLIC-001",
+  "repository": ".",
+  "objective": "Publish a synthetic-only open research repository with roadmap findings journal and TDD packet hardening",
+  "acceptance_criteria": [
+    "Public checkout verifies without local author files",
+    "Regressions and security checks pass on final source",
+    "Public roadmap findings journal and license exist"
+  ],
+  "constraints": [
+    "Publish synthetic source and methodology only; no private evidence reviewer returns or author expectations",
+    "No ticket analyzer or fabricated human labels"
+  ],
+  "task_class": "test_improvement",
+  "risk_level": "low",
+  "required_skills": [],
+  "recommended_reasoning_tier": "tier_2",
+  "preferred_agent": null,
+  "recommended_agent": null,
+  "actual_agent": null,
+  "effective_implementer_resource_id": null,
+  "dispatch_resource_id": null,
+  "is_override": null,
+  "override_reason": null,
+  "allowed_tools": [],
+  "prohibited_actions": [],
+  "verification_requirements": [],
+  "reviewer_requirements": [],
+  "human_approval_requirements": [],
+  "current_state": "discovered",
+  "task_journal_path": null,
+  "allowed_paths": [],
+  "metadata": {},
+  "schema": "ai.task_spec/v1"
+}

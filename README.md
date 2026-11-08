@@ -1,0 +1,84 @@
+# SupportLoop: Answered Is Not Resolved
+
+Open research into evidence-backed support-ticket audits.
+Recommendation remains **NARROW**. This is a research packet and integrity checker,
+not a support analyzer or a released product. There are no measured accuracy,
+customer-value or market-demand results.
+
+## Current deliverables
+
+1. Twenty-four synthetic histories with 103 observable events in data/cases.json.
+2. A versioned [labeling rubric](docs/rubric.md) and [evaluation contract](docs/evaluation_contract.md).
+3. Two observation-only [reviewer packets](reviewer_packets/), independently ordered,
+   with blank CSV forms. Give each reviewer only their directory.
+4. Author expectations kept locally outside the public distribution, not used as gold labels.
+5. A hashed packet manifest and standard-library structural checker with failure tests.
+6. [Architecture](docs/architecture.md), [Howl coordination](docs/howl_workflow.md),
+   [prior art](docs/prior_art.md), and a [case study plan](docs/case_study_plan.md).
+
+**Human feasibility gate: PENDING.** Independent human reviews have not been collected.
+No human agreement, adjudication, model-based ticket analysis or product
+implementation has occurred. A successful packet check does not pass this gate.
+
+## Run local checks
+
+Python 3.11+ is the intended tooling baseline. Runtime uses only the standard
+library. Development checks use the tools pinned in requirements_dev.txt.
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements_dev.txt
+```
+
+Run the checks with that environment's interpreter:
+
+```bash
+.venv/bin/python scripts/verify_packet.py
+.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python -m flake8 scripts tests
+```
+
+See [testing and impact assessment](documentation/TESTING.md). HowlPlane can run
+the same commands from .ai-project.toml; actual run records belong in runs/.
+For Plane, select the project environment explicitly with
+`VIRTUAL_ENV="$PWD/.venv" howlplane --repo . verify --project-dir .`.
+Dependency installation contacts the package index. The packet checker, tests
+and lint run locally without model calls or private data. See the CI workflow
+for separate security checks, including an advisory-database dependency audit.
+
+## Review safely
+
+The coordinator may keep local author expectations in the ignored author_material/
+directory; no published command or test requires them. Distribute only
+reviewer_packets/A or B to each reviewer. The packet
+contains synthetic observations, not the owner's incident or a real vendor's
+policy. Reviewer instructions distinguish supported outcomes, explained denials,
+procedural concerns and unknowns. Store completed returns in ignored
+review_returns/, preserving original submissions and hashes.
+
+No automatic grader, agreement calculator or intake tool exists yet. Do not
+report author-label agreement as accuracy. Do not add a product analyzer until
+the human feasibility gate and subsequent benchmark design gate are satisfied.
+
+## Scope and limitations
+
+Established support QA already handles solution quality, custom rubrics, effort,
+reopening and inferred resolution. The unvalidated gap is a portable, local,
+inspectable evidence contract. We may conclude that a rubric or an integration
+is more useful than a separate product.
+
+This selected synthetic set cannot estimate real failure rates, legal rights,
+vendor wrongdoing, or production performance. Hashes detect byte changes, not
+truth. Packet separation is procedural blinding, not filesystem isolation.
+Instruction-like text is deliberately included as untrusted case data.
+
+## Project work
+
+Follow the gated [roadmap](ROADMAP.md), [findings and bugs](issues.md), and
+[engineering journal](docs/journal.md). Contributions follow [TDD, OOP and DRY](CONTRIBUTING.md).
+Packet version 0.2.0 is a public preparation revision; no human review result
+or product release is implied. The rubric remains version 0.1.0.
+
+Code and synthetic study material are provided under the [MIT license](LICENSE).
+This repository publication is authorized; publication of any real incident
+or case-study result still requires separate owner review and consent.

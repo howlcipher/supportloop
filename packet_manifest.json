@@ -1,0 +1,21 @@
+{
+  "schema": "supportloop.feasibility_manifest/v1",
+  "version": "0.2.0",
+  "created_on": "2026-11-08",
+  "synthetic": true,
+  "case_count": 24,
+  "human_gate": "PENDING",
+  "sha256": {
+    "data/cases.json": "e9375c5645bbc0965ec7050aaa24a09af8df052736056537a195ab11688daf32",
+    "docs/rubric.md": "031f5cd832ac5164742946bf7e1402cbc9dbb9b18ff958163690d4096f1dd712",
+    "docs/evaluation_contract.md": "5902d957c40f62b2bf3d00c2d1946358ec206155a349f9c3ad75758d26ed8d68",
+    "reviewer_packets/A/README.md": "45a079813e173e596a61e8fbfc5918ae9c23066586eb38d3be93dde7f53c2915",
+    "reviewer_packets/A/cases.json": "b8b7aed035fb9e8da3b2417c7513adb6cb68a9ca37ed5fcf9e04ef171855062e",
+    "reviewer_packets/A/labels.csv": "6ad633c5e16e9e30705d6051d719ce749dba952228672aea0707e16ac3f38328",
+    "reviewer_packets/A/rubric.md": "031f5cd832ac5164742946bf7e1402cbc9dbb9b18ff958163690d4096f1dd712",
+    "reviewer_packets/B/README.md": "62520c2a3acf046a100cedff65e11fcdbbaaf3858029495371215d423373d7a7",
+    "reviewer_packets/B/cases.json": "22b82bba5aed24cd28696a31cb1d337d1ebccb0da88c718415ad6610d4ab4d72",
+    "reviewer_packets/B/labels.csv": "51ef0b632d087ca78763124a2f55b8cc0576d8a8fe79b0d03eec759973a14ff4",
+    "reviewer_packets/B/rubric.md": "031f5cd832ac5164742946bf7e1402cbc9dbb9b18ff958163690d4096f1dd712"
+  }
+}
