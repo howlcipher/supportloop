@@ -31,6 +31,7 @@ absence is an intentional public contract change, not weakened label validation.
 | RES-002 | P2 prior-art uncertainty | Vendor documentation establishes feature overlap, not measured adequacy | Compare a configured existing rubric against the constrained target workflow before writing an analyzer. Record unavailable access honestly. |
 | RES-003 | P2 external validity | The 24 authored synthetic cases are selected and intentionally clear | Obtain independently labeled, consented and more varied cases before generalizing. No production error-rate or market-demand claims from this set. |
 | RES-004 | P2 observability limit | Customer-visible exports may omit the decisive outcome evidence | Measure unknown/abstention rates and human review burden. Do not force resolution labels. |
+| RES-005 | P2 UX hypothesis | A preselected 12-month plan may increase accidental annual commitment for a one-month purchase goal | Capture consented initial/confirmation states and selection persistence before asserting a vendor-specific fact. If useful, preregister a synthetic checkout comparison. Measure errors and comprehension; do not infer predatory intent. |
 
 ## Retained limitations, not disguised as fixed bugs
 
