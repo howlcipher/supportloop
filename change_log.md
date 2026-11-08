@@ -45,3 +45,9 @@ hypotheses. Added a hashed manifest, standard-library packet checker, behavioral
 failure tests, HowlPlane project commands, evaluation gates and case study plan.
 No independent human labels or analyzer results exist. Human feasibility is
 pending because reviewers are unavailable. No product release or publication.
+
+## Discovery completion record
+
+Documented the NARROW decision, verified milestone evidence and remaining human,
+comparison, incident and publication gates. Prepared local review worksheets.
+No runtime, tests, dependencies or evaluation thresholds changed.

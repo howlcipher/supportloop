@@ -119,3 +119,11 @@ M1 software is ready for final regression and public review. M2 remains pending:
 no independent human returns exist. The shareable artifact is a reproducible
 research toolkit and preliminary methods report, not a validated resolution
 classifier or a verified investigation of a vendor.
+
+## Completion decision and owner review packet
+
+PR 1 merged as signed, verified commit 4c5be0d74d6f5cc88bacaebce8c5e7003d7e7a94.
+Merged-main CI 42528811778 passed Python 3.11/3.14 regression and security checks.
+The discovery completion record consolidates the NARROW decision and exact
+external inputs. Local evidence worksheets and review invitations are prepared;
+no reviewer or vendor contacted. No classifier or semantic outcome is claimed.
