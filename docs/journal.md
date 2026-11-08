@@ -59,3 +59,20 @@ are listed in issues.md. No semantic accuracy or human agreement was measured.
 The next shipping step is a signed initial commit and the authorized public
 repository push. Hosted CI must be observed after that push. The next engineering
 item remains GAP-001, completed-review intake; the human research gate is pending.
+
+## November 8, 2026: public foundation verified
+
+Created [howlcipher/supportloop](https://github.com/howlcipher/supportloop) as a
+public repository and pushed the signed initial commit
+[5e5da13](https://github.com/howlcipher/supportloop/commit/5e5da138925d351640da49f727867bf996752867).
+GitHub reports the signature as verified. The
+[initial hosted run](https://github.com/howlcipher/supportloop/actions/runs/42505873947)
+completed successfully: Python 3.11 and 3.14 regression, packet verification,
+lint, static analysis, dependency audit and Git history secret scanning.
+
+M0 is complete for that initial publication. This entry records that observed
+run; subsequent commits have their own GitHub checks and must remain green.
+The 24-case study still has zero independent human returns. No analyzer,
+accuracy claim, real incident account or case-study result has been released.
+Next work is GAP-001 under M1, with behavior-first tests and the same regression
+and privacy boundaries. Missing human evidence remains a separate dependency.

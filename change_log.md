@@ -4,6 +4,10 @@
 
 ### Public foundation, packet 0.2.0
 
+The synthetic research foundation is public at howlcipher/supportloop. The
+initial signed commit passed hosted regression/security CI on Python 3.11 and
+3.14. Subsequent commits are checked by the same workflow.
+
 Added a gated roadmap, findings and bugs report, public engineering journal,
 contribution guidance, MIT license and regression/security CI. Continued with
 Python and standard-library runtime code. Added a PacketVerifier object with
