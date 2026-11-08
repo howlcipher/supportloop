@@ -21,12 +21,28 @@ The original 15 regression contracts were retained. Additional checks exercise
 path escapes and sanitized CLI errors. Author hypotheses remain local; their
 absence is an intentional public contract change, not weakened label validation.
 
-## Open work, ordered by priority
+## Corrected during review infrastructure, packet 0.3.0
+
+| ID | Finding | Correction and evidence |
+| --- | --- | --- |
+| BUG-006 | A response CSV was read again after its digest was checked | Parse the exact byte snapshot used for the hash; concurrent-edit regression reproduces the old issue |
+| BUG-007 | Study construction reread observations and packet identities after verification | Retain immutable hash-checked packet bytes; independently reviewed fix and real filesystem-edit regression verify snapshot use and fresh-check drift detection |
+| BUG-008 | Python 3.11 path resolution of a symlink loop could expose a traceback | Shared path resolver normalizes the error; Python 3.11 failure reproduction and sanitized CLI regression |
+
+## Completed engineering gaps
+
+GAP-001 is implemented by strict 24-row intake, schema/version/digest binding,
+reference validation and immutable submission copies. GAP-002 is implemented by
+per-dimension descriptive agreement, full category matrices, marginals and
+undefined-kappa handling. Neither completion establishes independent labels,
+reviewer authenticity or semantic resolution accuracy. Direct Python value-object
+construction is a trusted programming interface; documented comparisons use
+submissions returned by load_submission. The CLI always performs full intake.
+
+## Open research, ordered by priority
 
 | ID | Priority/type | Finding | Next action and acceptance |
 | --- | --- | --- | --- |
-| GAP-001 | P1 engineering gap | Completed review intake is absent | Add strict CSV and metadata intake with failing tests for missing/duplicate cases, invalid dimensions, invalid references and incompatible rubric/packet identities. Reject incomplete submissions rather than dropping rows. |
-| GAP-002 | P1 engineering gap | No descriptive agreement calculator | Add raw agreement, full confusion matrix, marginals and kappa; preserve insufficient_evidence as a category; return undefined when expected agreement is one. Model results and self-declared identity must never auto-pass a human gate. Depends on GAP-001. |
 | RES-001 | P1 research dependency | No independent human labels | Collect two reviews only when people are available. Record independence/exposure and preserve original returns. AI or author labels cannot resolve this dependency. |
 | RES-002 | P2 prior-art uncertainty | Vendor documentation establishes feature overlap, not measured adequacy | Compare a configured existing rubric against the constrained target workflow before writing an analyzer. Record unavailable access honestly. |
 | RES-003 | P2 external validity | The 24 authored synthetic cases are selected and intentionally clear | Obtain independently labeled, consented and more varied cases before generalizing. No production error-rate or market-demand claims from this set. |

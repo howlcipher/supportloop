@@ -5,6 +5,7 @@ runs/
 review_returns/
 author_material/
 private_evidence/
+publication_drafts/
 .coverage
 htmlcov/
 dist/

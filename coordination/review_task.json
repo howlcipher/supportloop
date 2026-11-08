@@ -1,0 +1,36 @@
+{
+  "task_id": "SL-REVIEW-001",
+  "repository": ".",
+  "objective": "Implement strict completed-review intake and descriptive agreement with a synthetic-only demo; prepare local shareable methods drafts",
+  "acceptance_criteria": [
+    "No row silently omitted or invalid reference accepted",
+    "Agreement arithmetic and undefined kappa reproduce known cases",
+    "No synthetic model or self-declared human input can auto-pass the human gate",
+    "Final regression passes with no private inputs in public distribution"
+  ],
+  "constraints": [
+    "No semantic classifier before human and benchmark gates",
+    "No incident publication contact or remote private-material inference"
+  ],
+  "task_class": "feature",
+  "risk_level": "medium",
+  "required_skills": [],
+  "recommended_reasoning_tier": "tier_2",
+  "preferred_agent": null,
+  "recommended_agent": null,
+  "actual_agent": null,
+  "effective_implementer_resource_id": null,
+  "dispatch_resource_id": null,
+  "is_override": null,
+  "override_reason": null,
+  "allowed_tools": [],
+  "prohibited_actions": [],
+  "verification_requirements": [],
+  "reviewer_requirements": [],
+  "human_approval_requirements": [],
+  "current_state": "discovered",
+  "task_journal_path": null,
+  "allowed_paths": [],
+  "metadata": {},
+  "schema": "ai.task_spec/v1"
+}

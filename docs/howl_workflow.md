@@ -44,6 +44,13 @@ Codex or other remote model is required or launched for packet preparation.
 8. Review privacy, licensing, reproducibility and final regression before release.
 9. Obtain owner review of all public text and artifacts before publication.
 
+The review-infrastructure milestone adds strict intake and descriptive reports
+under the same file/CLI model. Plane's verification runs both original packet
+contracts and review/demo tests. An isolated code reviewer challenged the new
+correctness and privacy boundaries; its packet-snapshot finding was reproduced
+and corrected. That is code-review evidence, not an independent human labeling
+study. Writer lint maintains draft quality; final publication consent is separate.
+
 No broad implementation approval overrides these evidence gates.
 
 ## Observed integration limits

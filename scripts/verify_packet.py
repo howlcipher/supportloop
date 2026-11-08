@@ -9,6 +9,7 @@ import re
 import sys
 from datetime import datetime
 from pathlib import Path
+from types import MappingProxyType
 
 
 FIELDS = ["case_id", "objective", "outcome", "decision", "procedure", "satisfaction",
@@ -20,6 +21,14 @@ def require(condition, message):
     """Fail without echoing potentially sensitive input values."""
     if not condition:
         raise ValueError(message)
+
+
+def resolve_path(path):
+    """Normalize paths with the same sanitized error on supported Python versions."""
+    try:
+        return Path(path).resolve()
+    except RuntimeError:
+        raise ValueError("invalid filesystem path") from None
 
 
 def timestamp(value):
@@ -74,24 +83,30 @@ class PacketVerifier:
     This class certifies neither semantic labels nor independent human review.
     """
 
-    VERSION = "0.2.0"
+    VERSION = "0.3.0"
     MAX_FILE_BYTES = 2_000_000
     MANIFEST_FIELDS = {"schema", "version", "created_on", "synthetic", "case_count", "human_gate", "sha256"}
     REVIEWER_FILES = {"cases.json", "rubric.md", "labels.csv", "README.md"}
 
     def __init__(self, root):
-        self.root = Path(root).resolve()
+        self.root = resolve_path(root)
+        self._snapshot = None
 
     def path(self, relative):
         """Resolve a local packet path while refusing escapes through symlinks."""
         require(isinstance(relative, str) and not Path(relative).is_absolute(), "invalid packet path")
         path = self.root / relative
-        require(path.resolve().is_relative_to(self.root), "packet path escapes root")
+        require(resolve_path(path).is_relative_to(self.root), "packet path escapes root")
         return path
 
     def read_bytes(self, relative):
         """Bound reads so a malformed local packet cannot demand arbitrary memory."""
-        with self.path(relative).open("rb") as handle:
+        require(isinstance(relative, str), "invalid packet path")
+        if self._snapshot is not None and relative in self._snapshot:
+            return self._snapshot[relative]
+        path = self.path(relative)
+        require(path.is_file(), "packet input must be a regular file")
+        with path.open("rb") as handle:
             content = handle.read(self.MAX_FILE_BYTES + 1)
         require(len(content) <= self.MAX_FILE_BYTES, "packet file exceeds size limit")
         return content
@@ -109,9 +124,22 @@ class PacketVerifier:
     def reject_constant(_value):
         raise ValueError("nonfinite JSON constant")
 
+    @classmethod
+    def parse_json(cls, content):
+        return json.loads(content.decode("utf-8"),
+                          object_pairs_hook=cls.unique_object, parse_constant=cls.reject_constant)
+
     def read_json(self, relative):
-        return json.loads(self.read_bytes(relative).decode("utf-8"),
-                          object_pairs_hook=self.unique_object, parse_constant=self.reject_constant)
+        return self.parse_json(self.read_bytes(relative))
+
+    @staticmethod
+    def parse_csv(content):
+        """Parse a previously acquired byte snapshot without reading the file again."""
+        return list(csv.reader(io.StringIO(content.decode("utf-8"), newline=""), strict=True))
+
+    def read_csv(self, relative):
+        """Preserve quoted newlines for both templates and completed reviews."""
+        return self.parse_csv(self.read_bytes(relative))
 
     def locked_paths(self):
         paths = {"data/cases.json", "docs/rubric.md", "docs/evaluation_contract.md"}
@@ -121,7 +149,8 @@ class PacketVerifier:
 
     def verify_manifest(self):
         """Validate metadata as well as hashes; hashes alone do not define a study."""
-        manifest = self.read_json("packet_manifest.json")
+        manifest_bytes = self.read_bytes("packet_manifest.json")
+        manifest = self.parse_json(manifest_bytes)
         require(isinstance(manifest, dict) and set(manifest) == self.MANIFEST_FIELDS,
                 "manifest fields differ from contract")
         require(manifest["schema"] == "supportloop.feasibility_manifest/v1", "invalid manifest schema")
@@ -133,9 +162,13 @@ class PacketVerifier:
         require(manifest["human_gate"] == "PENDING", "manifest cannot certify human review")
         require(isinstance(manifest["sha256"], dict) and set(manifest["sha256"]) == self.locked_paths(),
                 "manifest locked file set mismatch")
+        snapshot = {"packet_manifest.json": manifest_bytes}
         for name, expected in manifest["sha256"].items():
             require(isinstance(expected, str) and re.fullmatch(r"[0-9a-f]{64}", expected), "invalid digest")
-            require(hashlib.sha256(self.read_bytes(name)).hexdigest() == expected, "locked artifact drift")
+            content = self.read_bytes(name)
+            require(hashlib.sha256(content).hexdigest() == expected, "locked artifact drift")
+            snapshot[name] = content
+        self._snapshot = MappingProxyType(snapshot)
 
     def read_cases(self, relative):
         cases = self.read_json(relative)
@@ -155,8 +188,7 @@ class PacketVerifier:
         require(self.read_bytes(f"{prefix}/rubric.md") == self.read_bytes("docs/rubric.md"),
                 "reviewer rubric mismatch")
         # csv.reader exposes row widths; DictReader can hide surplus cells under a None key.
-        content = self.read_bytes(f"{prefix}/labels.csv").decode("utf-8")
-        rows = list(csv.reader(io.StringIO(content, newline=""), strict=True))
+        rows = self.read_csv(f"{prefix}/labels.csv")
         require(bool(rows) and rows[0] == FIELDS, "reviewer columns mismatch")
         data = rows[1:]
         require(len(data) == 24 and all(len(row) == len(FIELDS) for row in data),
@@ -166,11 +198,16 @@ class PacketVerifier:
         return len(data)
 
     def verify(self):
-        self.verify_manifest()
-        by_id = self.read_cases("data/cases.json")
-        counts = {who: self.verify_reviewer(who, by_id) for who in ("A", "B")}
-        return {"status": "STRUCTURE_VERIFIED", "cases": len(by_id), "reviewer_rows": counts,
-                "human_gate": "PENDING", "semantic_accuracy": "NOT_EVALUATED"}
+        self._snapshot = None
+        try:
+            self.verify_manifest()
+            by_id = self.read_cases("data/cases.json")
+            counts = {who: self.verify_reviewer(who, by_id) for who in ("A", "B")}
+            return {"status": "STRUCTURE_VERIFIED", "cases": len(by_id), "reviewer_rows": counts,
+                    "human_gate": "PENDING", "semantic_accuracy": "NOT_EVALUATED"}
+        except Exception:
+            self._snapshot = None
+            raise
 
 
 def verify(root):
