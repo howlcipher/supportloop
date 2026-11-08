@@ -35,10 +35,23 @@ runs a pinned, checksum-verified gitleaks history scan. Run the test/lint/packet
 gate through HowlPlane using .ai-project.toml as well.
 Repeat after any final source, test or configuration changes.
 
-Missing coverage: semantic accuracy, real exports, human agreement, completed
-label intake and agreement computation. These are unimplemented and cannot be
-inferred from a passing structural gate. No API or acceptance test of a product
-is applicable. Python 3.11 compatibility requires an actual 3.11 gate; do not
+Twenty-five further contracts cover completed-review metadata/CSV intake,
+missing/duplicate rows, invalid references/codes/dimensions, hash identities,
+same-reviewer inputs, model/synthetic and self-attested human authority limits,
+known confusion/kappa arithmetic, undefined kappa, immutable snapshots under
+concurrent edits, Python 3.11 path errors, deterministic demo generation,
+overwrite refusal and the complete demo/validate/compare CLI flow. Prior
+contracts remain in place; no obsolete or duplicate tests were removed.
+
+Packet 0.3.0 and rubric 0.2.0 are intentional pre-study contract revisions.
+There are no collected human returns to migrate. The revised contracts add
+synthetic provenance and metadata without changing the case observations or
+weakening evidence gates.
+
+Missing coverage: semantic accuracy, real exports, human agreement and measured
+customer outcomes. These cannot be inferred from passing software tests. No HTTP
+API is implemented; the library and CLI have behavioral integration tests.
+Python 3.11 compatibility requires an actual 3.11 gate; do not
 claim it from a newer interpreter run. The public distribution must pass the
 same gate in a temporary export containing only staged or committed files,
 without author_material/, review_returns/, runs/ or the local virtualenv.

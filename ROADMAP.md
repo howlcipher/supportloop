@@ -33,15 +33,21 @@ M0's publication gate is evaluated against actual repository visibility and
 hosted CI. The journal records observed outcomes, not inferred completion.
 M0 passed for the initial publication: public visibility, a verified signed
 commit and green hosted regression/security checks are recorded in the journal.
-The next implementation item is M1 completed-review intake, which is research
-infrastructure, not ticket classification. Start with failure tests for missing
-rows and invalid event references; then add descriptive agreement calculations.
+M1 now supplies completed-review intake, descriptive agreement and a deterministic
+synthetic demo. It is research infrastructure, not ticket classification. The
+numeric gate and human gate remain separate. Independent code review and
+regression evidence are recorded in the journal; they are not human study data.
 Implement no semantic ticket analyzer before M2 and M4 permit it.
 
 M2 currently has no independent human returns. Do not contact reviewers or
 organizations automatically. Public source availability also creates a risk
 of reviewers seeing prior material: record their exposure instead of assuming
 blinding. Exposed cases cannot become the future locked benchmark.
+
+Review-ready LinkedIn, methods/case-study and recipient-brief drafts are kept
+locally in ignored publication_drafts/. Their real incident sections remain
+owner-reported and require redacted evidence and owner review before sharing.
+The public toolkit and methodology can be demonstrated without that incident.
 
 ## Experiment boundaries
 

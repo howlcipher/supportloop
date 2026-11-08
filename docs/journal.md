@@ -88,3 +88,34 @@ predatory intent. The original real-world observation remains local and has
 not been independently verified. No real checkout was accessed, no payment
 was made and no participant study ran. This documentation change does not
 implement an analyzer or change the synthetic packet or its research gates.
+
+## November 8, 2026: completed-review infrastructure
+
+Implemented GAP-001 and GAP-002 using behavior-first tests: strict completed
+CSV/metadata intake, snapshot-bound identities and references, immutable
+submission copies and per-dimension descriptive agreement reports. Explicit
+synthetic provenance requires packet 0.3.0 and rubric 0.2.0. There were no
+existing human returns to migrate; case observations are unchanged.
+
+The deterministic demo produces passing, failing and undefined numeric-gate
+examples while keeping the human gate pending. Fixture labels are arbitrary
+arithmetic inputs, not semantic judgments or independent human labels.
+The current local regression has 48 tests. Final hosted checks must correspond
+to the pushed commit; source-level test success is not a study result.
+
+An isolated code reviewer found a packet snapshot race. A failing real-edit
+regression reproduced it, and the reviewer rechecked the immutable-snapshot
+correction. Author-side tests also exposed a response reread race and a Python
+3.11 symlink-loop traceback. No tracked files or private inputs were changed
+by the reviewer. See review_m1.md for all findings and scope limits.
+
+HowlProof supported two supplied arithmetic checks and left the practical
+usefulness hypothesis inconclusive. Its overall result remains
+INSUFFICIENT_EVIDENCE. HowlWriter normalized and linted three local sharing
+drafts without model calls. Those drafts remain ignored for owner review; the
+incident narrative is owner-reported and no recipient was contacted.
+
+M1 software is ready for final regression and public review. M2 remains pending:
+no independent human returns exist. The shareable artifact is a reproducible
+research toolkit and preliminary methods report, not a validated resolution
+classifier or a verified investigation of a vendor.

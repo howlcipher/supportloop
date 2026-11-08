@@ -1,6 +1,6 @@
 # Feasibility evaluation contract
 
-Packet contract version: 0.2.0. Rubric: 0.1.0. Human review pending.
+Packet contract version: 0.3.0. Rubric: 0.2.0. Human review pending.
 
 ## Question and authority
 
@@ -54,6 +54,7 @@ No false-positive or accuracy claim against the author's key is allowed.
 | Condition | Action |
 | --- | --- |
 | No independent humans | Keep PENDING; finish packet checks only |
+| Review infrastructure without humans | Intake validation, descriptive arithmetic and explicitly synthetic demonstrations are allowed; no semantic classifier or human-gate certification |
 | Agreement below gate or semantic contradiction in controls | Revise rubric or stop; no analyzer |
 | Gate passes with defensible controls | Design an independently labeled benchmark and recheck prior-art adequacy |
 | Existing configured QA meets the constrained workflow | Prefer configuration, an integration or rubric over another product |
@@ -84,3 +85,11 @@ contracts but cannot certify semantic ticket resolution using its existing
 research checker. AI reviewers may critique packet defects if clearly labeled;
 they cannot satisfy this human gate. No generated rationale counts as evidence
 of market demand, vendor wrongdoing, or hidden case activity.
+
+The review tool reports a numeric threshold separately from the human gate.
+Even MET with self-declared human metadata leaves the human gate PENDING until
+independence and control cases receive separate review. A successful CLI exit
+means a report was produced, not that the study passed. Synthetic fixture labels
+exercise validation and arithmetic only; they are not independently labeled
+support scenarios. Wilson intervals describe raw agreement under an approximation
+and do not establish population reliability for this selected sample.
