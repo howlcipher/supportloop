@@ -76,3 +76,15 @@ The 24-case study still has zero independent human returns. No analyzer,
 accuracy claim, real incident account or case-study result has been released.
 Next work is GAP-001 under M1, with behavior-first tests and the same regression
 and privacy boundaries. Missing human evidence remains a separate dependency.
+
+## November 8, 2026: upstream checkout UX question
+
+Added RES-005 and a checkout UX methodology for the possibility that a preselected
+12-month plan makes an intended one-month purchase easier to get wrong. The plan
+covers selection persistence, commitment visibility, interaction/accessibility
+checks and a possible controlled comparison using fictional checkout screens.
+It does not assert a vendor-specific default, a measured causal effect or
+predatory intent. The original real-world observation remains local and has
+not been independently verified. No real checkout was accessed, no payment
+was made and no participant study ran. This documentation change does not
+implement an analyzer or change the synthetic packet or its research gates.

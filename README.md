@@ -82,3 +82,7 @@ or product release is implied. The rubric remains version 0.1.0.
 Code and synthetic study material are provided under the [MIT license](LICENSE).
 This repository publication is authorized; publication of any real incident
 or case-study result still requires separate owner review and consent.
+
+An [upstream UX research plan](docs/checkout_ux_research.md) examines whether
+annual-plan defaults can make an intended one-month purchase error-prone.
+This remains a hypothesis, not a verified finding about a vendor or its intent.

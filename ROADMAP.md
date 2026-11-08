@@ -50,3 +50,8 @@ These are targets, not observed achievements. A configured commercial QA
 comparison is required before claiming superiority over that product. An open
 rubric, benchmark or adapter can be the final useful deliverable even if the
 product premise fails.
+
+An optional upstream branch studies checkout defaults and accidental long-term
+commitment; see docs/checkout_ux_research.md and RES-005. Keep that research
+distinct from resolution auditing. No real checkout or participant experiment
+has been inspected or run, and this branch does not waive the human-label gates.

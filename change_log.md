@@ -4,6 +4,10 @@
 
 ### Public foundation, packet 0.2.0
 
+Added a bounded UX research plan for annual subscription defaults, selection
+persistence, price/term visibility and accidental commitment. Vendor-specific
+behavior and design intent remain unverified; no real incident is published.
+
 The synthetic research foundation is public at howlcipher/supportloop. The
 initial signed commit passed hosted regression/security CI on Python 3.11 and
 3.14. Subsequent commits are checked by the same workflow.

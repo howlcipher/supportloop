@@ -27,6 +27,10 @@ of the study, separately research current authoritative policy and legal sources
 
 1. Executive summary with the final measured conclusion, including a stop result.
 2. Motivation, observational timeline and limits of customer-visible evidence.
+   Include the upstream checkout journey where consented evidence supports it:
+   default plan selection, term/price visibility and correction opportunities.
+   Use [the UX research plan](checkout_ux_research.md) to distinguish reported
+   accidental commitment from inspected UI behavior or unproven design intent.
 3. Response completion, decision completeness and objective outcomes.
 4. Existing industry QA and the narrower proposed evidence contract.
 5. Preregistered methods, independent labels, baselines and adversarial cases.
