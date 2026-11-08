@@ -9,16 +9,37 @@ customer-value or market-demand results.
 
 1. Twenty-four synthetic histories with 103 observable events in data/cases.json.
 2. A versioned [labeling rubric](docs/rubric.md) and [evaluation contract](docs/evaluation_contract.md).
-3. Two observation-only [reviewer packets](reviewer_packets/), independently ordered,
+3. Two observation-only [reviewer packets](reviewer_packets/), separately ordered,
    with blank CSV forms. Give each reviewer only their directory.
 4. Author expectations kept locally outside the public distribution, not used as gold labels.
 5. A hashed packet manifest and standard-library structural checker with failure tests.
 6. [Architecture](docs/architecture.md), [Howl coordination](docs/howl_workflow.md),
    [prior art](docs/prior_art.md), and a [case study plan](docs/case_study_plan.md).
+7. Strict completed-review intake and descriptive agreement reports, with a
+   [reproducible arithmetic demo](docs/review_protocol.md).
 
 **Human feasibility gate: PENDING.** Independent human reviews have not been collected.
 No human agreement, adjudication, model-based ticket analysis or product
 implementation has occurred. A successful packet check does not pass this gate.
+
+## Try the research toolkit
+
+Python 3.11+ runs the demo without installing runtime dependencies:
+
+```bash
+python3 scripts/verify_packet.py
+python3 -m scripts.demo_reviews --out runs/first_demo
+python3 -m scripts.review_tools compare --left runs/first_demo/agreement_synthetic_a.csv --left-metadata runs/first_demo/agreement_synthetic_a.json --right runs/first_demo/agreement_synthetic_b.csv --right-metadata runs/first_demo/agreement_synthetic_b.json
+```
+
+Use a new destination each time; existing directories are refused. The demo
+produces generated arithmetic fixtures, not support judgments: 22/24 agreement
+with kappa 0.875, complete disagreement, and undefined kappa for one-category
+agreement. Every report keeps the human gate pending. No accuracy or customer
+benefit is demonstrated. See [engineering findings](docs/engineering_findings.md)
+for scope and limitations. Invoke the new tools with `python3 -m scripts...`.
+See [sharing guidance](SHARING.md) for a defensible early-project demonstration
+and the evidence still needed for an incident case study.
 
 ## Run local checks
 
@@ -56,9 +77,11 @@ policy. Reviewer instructions distinguish supported outcomes, explained denials,
 procedural concerns and unknowns. Store completed returns in ignored
 review_returns/, preserving original submissions and hashes.
 
-No automatic grader, agreement calculator or intake tool exists yet. Do not
-report author-label agreement as accuracy. Do not add a product analyzer until
-the human feasibility gate and subsequent benchmark design gate are satisfied.
+The [review protocol](docs/review_protocol.md) defines complete CSV/metadata
+submissions and report interpretation. Intake checks digests and references;
+it does not authenticate reviewers or assess semantic correctness. There is no
+automatic ticket grader. Do not report author-label agreement as accuracy or
+add a classifier before the human and benchmark gates are satisfied.
 
 ## Scope and limitations
 
@@ -76,8 +99,9 @@ Instruction-like text is deliberately included as untrusted case data.
 
 Follow the gated [roadmap](ROADMAP.md), [findings and bugs](issues.md), and
 [engineering journal](docs/journal.md). Contributions follow [TDD, OOP and DRY](CONTRIBUTING.md).
-Packet version 0.2.0 is a public preparation revision; no human review result
-or product release is implied. The rubric remains version 0.1.0.
+Packet version 0.3.0 and rubric 0.2.0 add explicit synthetic review provenance
+and completed-review metadata. No prior human returns existed to migrate; old
+version metadata is rejected. No human result or classifier release is implied.
 
 Code and synthetic study material are provided under the [MIT license](LICENSE).
 This repository publication is authorized; publication of any real incident

@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+### Review infrastructure, packet 0.3.0 and rubric 0.2.0
+
+Added strict completed-review CSV/metadata intake, immutable submissions,
+descriptive per-dimension agreement reports and a deterministic synthetic demo.
+Reports preserve uncertainty and keep human approval separate from numeric
+thresholds. Added CLI/library integration and failure-oriented tests.
+Fixed response and packet snapshot races and Python 3.11 symlink-loop errors.
+Independent code review found and rechecked the packet snapshot correction.
+
+Added a review protocol and preliminary engineering findings. Publication drafts
+stay local for owner review. No semantic classifier, independent human labels,
+customer-outcome results or vendor-specific incident publication is claimed.
+
 ### Public foundation, packet 0.2.0
 
 Added a bounded UX research plan for annual subscription defaults, selection
