@@ -89,11 +89,12 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(page.meta["og:url"], url)
         self.assertEqual(page.meta["og:image"], BASE + "assets/supportloop-social.png")
         self.assertEqual(page.meta["twitter:image"], page.meta["og:image"])
-        source = ROOT.parent / "docs/blizzard_case_study.md"
+        source = ROOT.parent / "docs/subscription_case_study.md"
         self.assertEqual(
             page.meta["supportloop:source-sha256"], hashlib.sha256(source.read_bytes()).hexdigest()
         )
         text = (ROOT / "case-study.html").read_text()
+        self.assertIn("Provider names are omitted", text)
         self.assertIn("Customer-reported account", text)
         self.assertIn("November 8, 2026", text)
         self.assertIn("not independently verified", text)
@@ -112,7 +113,7 @@ class SiteTests(unittest.TestCase):
                 target = (ROOT / parsed.path).resolve()
                 self.assertTrue(target.is_relative_to(ROOT.resolve()))
                 self.assertTrue(target.is_file())
-        pdf = ROOT / "assets/blizzard-support-case-study.pdf"
+        pdf = ROOT / "assets/subscription-support-case-study.pdf"
         self.assertTrue(pdf.read_bytes().startswith(b"%PDF-"))
 
 

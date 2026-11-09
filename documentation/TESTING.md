@@ -84,3 +84,9 @@ private-input and research-limit checks remain. No backend tests are removed or
 weakened. The full regression and staged public-export gate apply to the final
 article, stylesheet, PDF, source and authority documentation. Test success cannot
 verify the participant's report or establish improvement efficacy.
+
+Anonymization updates the existing article contract for generic source/PDF paths
+and an explicit omission notice. No backend behavior changes, tests removed or
+duplicate tests added. The source hash, real assets, links and evidence notices
+remain protected. Full regression, public-export checks and browser acceptance
+cover the final edition; a tracked-text and extracted-PDF scan checks names.

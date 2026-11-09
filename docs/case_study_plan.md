@@ -1,7 +1,7 @@
 # Answered Is Not Resolved: case study plan
 
 Status: the separately authorized observational case is published as
-[the Blizzard experience case study](blizzard_case_study.md). It has no controlled
+[the subscription support experience case study](subscription_case_study.md). It has no controlled
 empirical results; this plan still governs any later evidence or performance work.
 Any future real incident would be an observational example. No raw incident
 artifacts, payment credentials, account identifier or screenshot is included

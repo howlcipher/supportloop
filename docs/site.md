@@ -62,12 +62,12 @@ The deployment runtime follow-up pins released Node 24 Pages actions and Ubuntu
 ubuntu-latest migration annotations; the follow-up removes those moving
 runtime assumptions. Site content and deployment scope are unchanged.
 
-## Named case study
+## Provider-anonymized case study
 
-case-study.html presents the owner-authorized Blizzard/World of Warcraft narrative
+case-study.html presents the owner-authorized subscription-support narrative
 with its own canonical URL, project-card metadata and public PDF. The observation
 cutoff remains November 8, 2026; it is not a current-ticket-status claim. The
-source is docs/blizzard_case_study.md, rendered locally with the installed
+source is docs/subscription_case_study.md, rendered locally with the installed
 Markdown parser and shared site CSS. Its SHA-256 is recorded in the article's
 supportloop:source-sha256 metadata. That hash tracks the declared source revision,
 not the truth of the account or an authentication of the participant.
