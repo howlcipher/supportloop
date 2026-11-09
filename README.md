@@ -13,6 +13,10 @@ presents the public methods, findings and limitations with a dedicated project
 sharing image. Deployment uses pinned Node 24 actions on Ubuntu 24.04.
 See [site operations](docs/site.md) for deployment and preview checks.
 
+The immediate practical deliverable is a [support improvement proposal](docs/support_improvement_proposal.md)
+and an experience-led case-study draft. Optional product validation remains
+gated; it is not a prerequisite for an honestly qualified observational account.
+
 ## Current deliverables
 
 1. Twenty-four synthetic histories with 103 observable events in data/cases.json.

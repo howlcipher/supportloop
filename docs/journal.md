@@ -157,3 +157,11 @@ CSS, SVGs and PNG all returned HTTP 200 and exact source-byte matches. That
 workflow emitted Node 20 Pages-action deprecation and runner-migration notices;
 a small follow-up pins released Node 24 action revisions and Ubuntu 24.04.
 No site content or application behavior changes in that follow-up.
+
+## November 9: practical improvement focus
+
+Owner approved the focused local case-study draft and asked to continue. Public
+site work now foregrounds the general six-step service proposal. It separates
+observational writing from optional product benchmarks, preserves all evidence
+limits and publishes no actual incident. A destination/material choice for a
+named public case study is pending; no contact or social post is authorized here.
