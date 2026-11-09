@@ -1,12 +1,14 @@
 # Answered Is Not Resolved: case study plan
 
-Status: methodology outline only; no real incident publication or empirical results.
+Status: the separately authorized observational case is published as
+[the subscription provider experience case study](subscription_case_study.md). It has no controlled
+empirical results; this plan still governs any later evidence or performance work.
 Any future real incident would be an observational example. No raw incident
-material, payment information, account identifier or screenshot is included
+artifacts, payment credentials, account identifier or screenshot is included
 in this repository. The benchmark contains only synthetic
 cases and synthetic policies unrelated to any real vendor's eligibility rules.
 
-## Evidence acquisition before writing the incident analysis
+## Evidence acquisition for stronger incident claims
 
 With explicit material-specific consent, use redacted message exports, visible
 status events, timestamps with timezones and relevant public policy versions.
