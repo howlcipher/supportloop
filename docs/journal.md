@@ -170,9 +170,18 @@ named public case study is pending; no contact or social post is authorized here
 
 The owner explicitly authorized naming the parties while emphasizing professional,
 helpful improvement rather than complaint. The separately published account names
-subscription provider Entertainment and online-game, records the historical November 8
+the provider and game, records the historical November 8
 cutoff and keeps original artifacts and later status unverified. Loaded language
 is replaced with neutral checkout-inspection questions. A dedicated article and
 PDF share the practical workflow and proposed pilot measures. No company contact
 or LinkedIn post is authorized or initiated. Final deployment evidence follows
 verification; synthetic benchmark data and human gates are unchanged.
+
+## Public edition anonymization
+
+Owner requested a company-neutral presentation focused on improvement. Archived
+the named source, page and PDF locally, generalized current public text and
+renamed public artifacts. Earlier entries above were editorially generalized;
+the original Git history remains intact. Existing publication tests were updated
+for renamed assets and the explicit provider-omission notice, and failed before
+the changes. No incident verification or new outcome is claimed.

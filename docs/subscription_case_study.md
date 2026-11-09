@@ -1,19 +1,21 @@
 # A clearer path through a subscription correction request
 
-online-game subscription support: an observational account involving subscription provider Entertainment.
+Online-game subscription support: a provider-anonymized observational account.
 
 ## Purpose and evidence boundary
 
 This observational case study proposes practical improvements to checkout
 clarity and support continuity. It is based on the customer's account, not a
-controlled experiment or an independent audit of subscription provider's systems.
+controlled experiment or an independent audit of the provider's systems.
 
 Customer-reported account. Observation cutoff: November 8, 2026. The incident
 narrative is not independently verified. Original ticket messages, transaction
 records, the referenced X post and historical checkout screens have not been
 inspected. Subsequent ticket status is unknown. No quotations are reconstructed.
 
-Publication of this named account was authorized by the participant. Account,
+Provider names are omitted to keep the focus on process improvement. Dates and
+reported purchase details are retained; this does not guarantee de-identification.
+Publication of this account was authorized by the participant. Account,
 payment and ticket identifiers are omitted. The purpose is to make a support
 journey clearer and suggest changes worth evaluating.
 
@@ -40,7 +42,7 @@ support decision. Clearer communication need not change legitimate policy.
 | After payment settled | The automated refund tool showed no eligible orders | Tool response and the specific eligibility condition |
 | Initial support ticket | A reply described by the customer as generic arrived approximately four hours after submission, denied the request and referred back to the refund tool | Original wording, timestamps and internal reasoning |
 | Reopened request | Transaction information, an explanation of the mistake, a request for individual review and an offer to surrender promotional items were supplied | Routing outcome; the offer does not establish policy eligibility |
-| Additional guidance | The customer reports subscription provider support guidance on X suggesting a direct ticket route for Game Master review, and attaching that guidance | The post, representative attribution and actual routing |
+| Additional guidance | The customer reports guidance from the provider’s support team on X suggesting a direct ticket route for review by an authorized support representative, and attaching that guidance | The post, representative attribution and actual routing |
 | November 8 observation cutoff | No further visible response or confirmation of individual review was reported | Internal activity and any later response or outcome |
 
 During the wait, the customer reports avoiding subscription use to preserve
@@ -104,7 +106,7 @@ refunds outside legitimate policy.
 
 Possible visible states include awaiting settlement, awaiting customer
 information, pending authorized review, decision explained and remedy execution
-confirmed. These are proposed labels, not observed subscription provider system states.
+confirmed. These are proposed labels, not observed states in the provider’s systems.
 
 ## Evaluate changes before claiming improvement
 
@@ -140,7 +142,7 @@ improvements that could be evaluated without relaxing policy.
 One reported experience cannot establish prevalence, systemic misconduct,
 manipulative intent or refund entitlement. Its contribution is a bounded account
 of customer uncertainty and a concrete workflow proposal that a team could test.
-subscription provider's internal evidence and perspective have not been collected here.
+the provider's internal evidence and perspective have not been collected here.
 
 SupportLoop's [public methods demonstration](https://howlcipher.github.io/supportloop/)
 provides supporting research infrastructure. Its synthetic agreement fixtures

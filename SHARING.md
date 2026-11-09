@@ -18,15 +18,14 @@ not support resolution accuracy, reduced customer effort or a new market gap.
 
 ## Authorized observational case
 
-The owner authorized naming subscription provider Entertainment and online-game in the
-constructive case study on the project site/source repository. Share
+The owner authorized the constructive observational case study on the project site/source repository. Share
 https://howlcipher.github.io/supportloop/case-study.html or its public PDF. The
 narrative is customer-reported through November 8, 2026, not independently
 verified, and separate from synthetic performance evaluation. It publishes no
 account identifiers or original private artifacts. No entitlement, SLA breach,
 internal-review finding or validated improvement is asserted.
 
-This permission does not authorize sending messages to subscription provider or posting on
+This permission does not authorize sending messages to the provider or posting on
 LinkedIn. Other private drafts and original evidence remain local.
 
 ## Review other local drafts before posting
@@ -57,3 +56,7 @@ of manipulative intent or an incorrect support decision.
 No agent contacts a vendor, accesses private accounts or publishes incident
 material as part of running this toolkit. A future completed case study may
 honestly conclude that the proposed product should not be built.
+
+The preferred public edition omits company and game names. The named edition is
+archived locally. Earlier commits and pull requests retain it; copies, caches and
+reported details may still identify the provider. No history rewrite was made.

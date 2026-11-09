@@ -7,7 +7,7 @@ Python is the available implementation language. No .NET tooling is required.
 
 Prioritize the experience-led case study and practical support-process proposal.
 The public general proposal is complemented by a separate, owner-authorized
-subscription provider-named observational case study. Its account is not independently verified
+provider-anonymized observational case study. Its account is not independently verified
 and is excluded from benchmark evaluation; raw private evidence remains local. Product
 benchmarks below are optional engineering expansion gates, not prerequisites
 for a clearly attributed observational case study.

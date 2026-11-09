@@ -14,7 +14,7 @@ sharing image. Deployment uses pinned Node 24 actions on Ubuntu 24.04.
 See [site operations](docs/site.md) for deployment and preview checks.
 
 The immediate practical deliverable is a [support improvement proposal](docs/support_improvement_proposal.md)
-and an [experience-led subscription provider case study](https://howlcipher.github.io/supportloop/case-study.html).
+and an [experience-led subscription support case study](https://howlcipher.github.io/supportloop/case-study.html).
 The narrative is customer-reported through November 8, 2026 and not independently
 verified. Its [source text](docs/subscription_case_study.md) and downloadable PDF explain
 limits and propose improvements; no pilot result or refund entitlement is claimed.
@@ -120,10 +120,14 @@ and completed-review metadata. No prior human returns existed to migrate; old
 version metadata is rejected. No human result or classifier release is implied.
 
 Code and synthetic study material are provided under the [MIT license](LICENSE).
-This repository and the bounded subscription provider observational case narrative are
+This repository and the bounded observational case narrative are
 authorized for publication. Additional private incident artifacts, new destinations
 or empirical claims still require their supporting evidence and appropriate consent.
 
 An [upstream UX research plan](docs/checkout_ux_research.md) examines whether
 annual-plan defaults can make an intended one-month purchase error-prone.
 This remains a hypothesis, not a verified finding about a vendor or its intent.
+
+The current public edition omits company and game names to focus on process
+improvement. Earlier Git commits retain the named edition; this is an editorial
+revision, not a history purge or a guarantee of de-identification.

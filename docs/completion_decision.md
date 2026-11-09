@@ -75,8 +75,7 @@ building a product.
 
 ## Subsequent publication note: November 9, 2026
 
-The owner subsequently approved a constructive narrative naming subscription provider and
-online-game for the project site/source repository. The separately
+The owner subsequently approved a constructive subscription-support narrative for the project site/source repository. The separately
 published [observational case](subscription_case_study.md) remains customer-reported
 through November 8 and not independently verified. This does not change the
 original product recommendation, synthetic benchmark status or evidence gates.

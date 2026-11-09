@@ -94,6 +94,7 @@ class SiteTests(unittest.TestCase):
             page.meta["supportloop:source-sha256"], hashlib.sha256(source.read_bytes()).hexdigest()
         )
         text = (ROOT / "case-study.html").read_text()
+        self.assertIn("Provider names are omitted", text)
         self.assertIn("Customer-reported account", text)
         self.assertIn("November 8, 2026", text)
         self.assertIn("not independently verified", text)
