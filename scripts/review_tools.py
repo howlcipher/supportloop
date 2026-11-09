@@ -15,6 +15,8 @@ from typing import Mapping
 
 from scripts.verify_packet import FIELDS, PacketVerifier, require, timestamp
 
+TOOL_VERSION = "0.1.1"
+
 DIMENSIONS = {
     "audit_label": ("review_needed", "no_supported_defect", "insufficient_evidence"),
     "outcome": ("supported_achieved", "supported_not_achieved", "partial", "unknown"),
@@ -86,7 +88,7 @@ def agreement(left, right, categories):
 
 @dataclass(frozen=True)
 class ReviewSubmission:
-    """Validated immutable copies of self-declared metadata and response rows."""
+    """Immutable copies; use load_submission to validate untrusted inputs."""
 
     metadata: Mapping
     rows: Mapping
@@ -161,7 +163,7 @@ class ReviewStudy:
         for name in ("reviewer_id", "reviewer_kind", "rubric_version"):
             require(row[name] == metadata[name], "row and metadata disagree")
         require(
-            row["elapsed_seconds"] == "" or re.fullmatch(r"0|[1-9]\d*", row["elapsed_seconds"]),
+            row["elapsed_seconds"] == "" or re.fullmatch(r"0|[1-9][0-9]*", row["elapsed_seconds"]),
             "invalid elapsed seconds",
         )
         require(
@@ -232,6 +234,7 @@ class ReviewStudy:
             eligibility = "REQUIRES_INDEPENDENCE_REVIEW"
         return {
             "schema": "supportloop.agreement_report/v1",
+            "tool_version": TOOL_VERSION,
             "packet_manifest_sha256": self.manifest_sha256,
             "rubric_sha256": self.rubric_sha256,
             "dimensions": stats,

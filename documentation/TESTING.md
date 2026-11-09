@@ -1,7 +1,8 @@
 # Testing and impact assessment
 
-Observable behavior: reject malformed, non-synthetic, label-contaminated or
-drifted feasibility packets; accept valid observations with unknown timestamps.
+Observable behavior: reject malformed packets, non-synthetic declarations,
+structured label fields, nonblank reviewer forms or locked-artifact drift;
+accept valid observations with unknown timestamps.
 No support classification behavior exists.
 
 The original fifteen contracts protect accepted packet shape,
@@ -55,3 +56,22 @@ Python 3.11 compatibility requires an actual 3.11 gate; do not
 claim it from a newer interpreter run. The public distribution must pass the
 same gate in a temporary export containing only staged or committed files,
 without author_material/, review_returns/, runs/ or the local virtualenv.
+
+Provider-review/site additions protect one further demo contract: a valid
+packet without E1 must still generate valid referenced fixtures. The agreement
+test is renamed to refer to insufficient_evidence and now checks both marginals;
+no protection is removed or duplicated. Three static-site contracts check real
+PNG dimensions and metadata, local navigation/assets, landmarks and absence of
+private publication paths. Source, CI and site changes require the full gate.
+Browser checks additionally exercise 1440, 390 and 320 pixel layouts, keyboard
+skip navigation, console errors and document overflow. A narrow-screen table
+overflow was reproduced and corrected during these checks. They do not certify
+complete accessibility conformance or external social-platform cache behavior.
+
+Further provider review strengthened existing parser, width and independence
+contracts instead of appending duplicate tests. New coverage checks ASCII
+identifiers, completed-row widths and BOM-preserving intake. Nonfinite parser
+tests now isolate named constants and overflowing numeric literals. A source
+mutation that ignored author/exposure claims survived the original test and is
+rejected by the strengthened test. Symlinked temporary-directory tests were
+reproduced against the old snapshot and pass with resolved fixture paths.

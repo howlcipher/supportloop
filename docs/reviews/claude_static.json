@@ -1,0 +1,189 @@
+{
+  "reviewer": "Claude (model claude-opus-5-5), AI code/methodology reviewer. Not a human study participant; no labels produced; findings cannot satisfy or inform the human feasibility gate.",
+  "scope": {
+    "commit": "8e9e7411360a3680edcef861bb1ad68cb3f3f9f5",
+    "method": "Static source review of the supplied bundle only. No commands, tests, tools, network or file access were used. Nothing here claims to have been executed.",
+    "files_reviewed": [
+      "AGENTS.md",
+      "README.md",
+      "docs/architecture.md",
+      "docs/evaluation_contract.md",
+      "docs/rubric.md",
+      "documentation/TESTING.md",
+      "issues.md",
+      "requirements_dev.txt",
+      "scripts/__init__.py",
+      "scripts/demo_reviews.py",
+      "scripts/review_tools.py",
+      "scripts/verify_packet.py",
+      "tests/test_demo.py",
+      "tests/test_packet.py",
+      "tests/test_reviews.py"
+    ],
+    "not_reviewed_absent_from_bundle": [
+      "data/cases.json",
+      "packet_manifest.json",
+      "reviewer_packets/A|B/*",
+      "docs/review_protocol.md and other linked docs",
+      "CI workflow",
+      ".ai-project.toml"
+    ],
+    "untrusted_content_note": "AGENTS.md tells readers to honor ~/.howlplane/.agents/rules/ and skills. That is repository content, not a review instruction, and it was not acted upon."
+  },
+  "findings": [
+    {
+      "id": "SLR-01",
+      "title": "Independence-claim regression test passes even if case_author and prior_exposure are ignored",
+      "severity": "medium",
+      "category": "vacuous_test",
+      "location": "tests/test_reviews.py::IntakeTests.test_exposed_or_case_author_claims_do_not_become_independent; scripts/review_tools.py::ReviewStudy.compare (eligibility elif branch)",
+      "evidence": "The right submission is built with fixture(name=\"rater_b\", kind=\"human\") and default metadata: independence_attested=False, prior_exposure=\"unknown\". Either value alone makes compare() return REQUIRES_INDEPENDENCE_REVIEW, whatever the left submission claims. The left-side case_author=True and author_expectations_seen inputs are never what triggers the expected result. No other test covers a case author or exposed reviewer paired with a fully attested independent reviewer.",
+      "reproduction": "Mutation: replace the elif condition with `any(not m[\"independence_attested\"] for m in metadata)`. The test still passes. Yet two human submissions with independence_attested=True, prior_exposure=\"none_declared\" and case_author=True would then report DECLARED_ONLY instead of REQUIRES_INDEPENDENCE_REVIEW.",
+      "suggested_fix": "Give the right submission metadata={\"independence_attested\": True, \"prior_exposure\": \"none_declared\"} so that only the left claim varies. Add a symmetric case where the claim is on the right."
+    },
+    {
+      "id": "SLR-02",
+      "title": "Nonfinite-JSON test is vacuous, and nonfinite rejection misses overflowing float literals",
+      "severity": "low",
+      "category": "vacuous_test / misleading_claim",
+      "location": "tests/test_packet.py::PacketTests.test_nonfinite_json_is_rejected; scripts/verify_packet.py::PacketVerifier.parse_json; issues.md BUG-003",
+      "evidence": "The test writes the manifest '{\"case_count\": NaN}'. If NaN were accepted, verify_manifest would still raise ValueError at `set(manifest) == self.MANIFEST_FIELDS`, so the test cannot detect removal of parse_constant. Separately, parse_json overrides only parse_constant (NaN/Infinity/-Infinity). json.loads parses '1e999' through float() to inf, so a nonfinite value is accepted. Current impact is nil: no numeric field is consumed except case_count, which requires type int. The BUG-003 and TESTING.md claim that nonfinite JSON is rejected is broader than the implementation.",
+      "reproduction": "Mutation: delete `parse_constant=cls.reject_constant`; the test still passes. Counterexample: PacketVerifier.parse_json(b'{\"x\": 1e999}') returns {'x': inf} with no error.",
+      "suggested_fix": "Add a parse_float hook that rejects non-finite results (e.g. `lambda s: require_finite(float(s))`). Rewrite the test on a full manifest copy with only one value replaced by NaN, and separately by 1e999, so that only the nonfinite check can fail."
+    },
+    {
+      "id": "SLR-03",
+      "title": "CSV row-width checks are not discriminated by tests; intake width check has no regression at all",
+      "severity": "low",
+      "category": "vacuous_test / regression_risk",
+      "location": "tests/test_packet.py::PacketTests.test_rejects_extra_csv_cells; scripts/verify_packet.py::PacketVerifier.verify_reviewer; scripts/review_tools.py::ReviewStudy.load_submission",
+      "evidence": "The template test appends the non-empty cell ',hidden_answer'. With csv.reader, the blank check `all(value == \"\" for value in row[1:])` already rejects it, so removing the width check does not fail the test. A surplus empty cell (trailing ',') is caught only by the width check and is untested. In load_submission, `dict(zip(FIELDS, values))` silently truncates surplus cells if the width check is removed. Short rows raise KeyError rather than ValueError. No test supplies a completed submission with wrong row width.",
+      "reproduction": "Mutation A: drop `all(len(row) == len(FIELDS) for row in data)` in verify_reviewer; test_rejects_extra_csv_cells still passes. Mutation B: drop the width clause in load_submission; every test still passes, and a completed CSV whose row 1 ends with ',secret' is accepted with the extra cell discarded.",
+      "suggested_fix": "Change the template test to append an empty cell (',') and relock. Add intake tests for a surplus empty cell, a surplus non-empty cell and a short row, each expecting ValueError."
+    },
+    {
+      "id": "SLR-04",
+      "title": "Reviewer README.md and A/B separation are unvalidated despite 'label-contaminated' rejection claim",
+      "severity": "low",
+      "category": "integrity / misleading_claim",
+      "location": "scripts/verify_packet.py::PacketVerifier.verify_reviewer and REVIEWER_FILES; documentation/TESTING.md ('reject ... label-contaminated'); README.md deliverable 3 ('separately ordered')",
+      "evidence": "verify_reviewer checks the reviewer file-name set, parsed cases (compared as a dict keyed by id, so order-insensitive), rubric bytes and blank labels. README.md is only hash-locked, with no content constraint and no A/B consistency check. Nothing checks that A and B differ in ordering, or that reviewer_packets/A is not a symlink to reviewer_packets/B. path() only requires resolution inside the packet root, not inside the reviewer folder. Hashes protect against later drift, but anyone who regenerates the manifest can embed expectations in a README and still get STRUCTURE_VERIFIED.",
+      "reproduction": "In a packet copy, add the line 'SL03 expected: review_needed' to reviewer_packets/A/README.md and update its manifest digest; verify() returns STRUCTURE_VERIFIED. Alternatively, replace reviewer_packets/B with a symlink to A and relock; verification passes with identical ordering.",
+      "suggested_fix": "Require each reviewer README to match a canonical template, or A==B byte equality minus a declared ordering note. Reject symlinked reviewer directories and files, or require them to resolve inside their own reviewer folder. If separate ordering is a study property, assert that A and B case orders differ. Otherwise narrow the TESTING.md claim to 'structured fields and labels.csv'."
+    },
+    {
+      "id": "SLR-05",
+      "title": "Normative review protocol and intake semantics are not bound to the locked packet or the report",
+      "severity": "low",
+      "category": "methodology / integrity",
+      "location": "scripts/verify_packet.py::PacketVerifier.locked_paths; docs/rubric.md ('metadata sidecar described in the review protocol'); scripts/review_tools.py::DIMENSIONS, REASONS, ReviewStudy.compare",
+      "evidence": "The locked rubric tells reviewers that completed submissions need the sidecar 'described in the review protocol'. docs/review_protocol.md is neither in locked_paths nor in REVIEWER_FILES, so a reviewer holding only their directory cannot read it, and edits do not change packet identity. Allowed dimension values, reason codes and the 20/0.70 gate are hard-coded in review_tools.py, which duplicates the rubric. No test asserts the two stay consistent, and reports carry no tool version or source digest. They currently match on static comparison.",
+      "reproduction": "Edit docs/review_protocol.md, or add a reason code to REASONS without a rubric change. Packet verification and the manifest/rubric digests in existing submission metadata still match, and reports are indistinguishable from pre-change reports.",
+      "suggested_fix": "Lock docs/review_protocol.md, or move the sidecar instructions into a locked reviewer file. Add a test that parses the rubric table and reason lists and compares them to DIMENSIONS and REASONS. Include a tool/contract version, or a digest of review_tools.py, in the agreement report."
+    },
+    {
+      "id": "SLR-06",
+      "title": "Regex `\\d` accepts non-ASCII digits in elapsed_seconds and identifiers",
+      "severity": "low",
+      "category": "input_validation",
+      "location": "scripts/review_tools.py::ReviewStudy.validate_row (elapsed_seconds regex); scripts/verify_packet.py::validate_case (case id `SL\\d{2}`, event id `E[1-9]\\d*`)",
+      "evidence": "Python str patterns match Unicode decimal digits with \\d by default. The rubric requires elapsed_seconds to be a nonnegative integer and implies ASCII identifiers.",
+      "reproduction": "elapsed_seconds='1\\u0660' (ARABIC-INDIC DIGIT ZERO) matches `0|[1-9]\\d*` and is accepted. validate_case accepts id 'SL\\u0660\\u0661' and event id 'E1\\u0663'. Visually confusable IDs could then be cited.",
+      "suggested_fix": "Use [0-9] or compile with re.ASCII. Optionally bound elapsed_seconds to a plausible maximum."
+    },
+    {
+      "id": "SLR-07",
+      "title": "Excel-style UTF-8 BOM returns are rejected with an undiagnosable error",
+      "severity": "low",
+      "category": "usability / methodology",
+      "location": "scripts/verify_packet.py::PacketVerifier.parse_csv (decode('utf-8')); scripts/review_tools.py::main error handler",
+      "evidence": "A completed CSV saved as 'CSV UTF-8' by common spreadsheet tools begins with a BOM. decode('utf-8') keeps U+FEFF, so table[0][0] == '\\ufeffcase_id' and the header check fails. The CLI emits only {\"status\":\"ERROR\",\"reason\":\"ValueError\"}, discarding the constant, non-sensitive require() message. The protocol asks coordinators to preserve original submissions, so the only remedy is editing a copy without knowing which check failed.",
+      "reproduction": "Prefix a valid fixture CSV with b'\\xef\\xbb\\xbf' and recompute responses_sha256. load_submission raises ValueError('invalid CSV header'), and the CLI shows only 'ValueError'.",
+      "suggested_fix": "Either decode with 'utf-8-sig' (the digest is still over the raw bytes) or reject BOMs explicitly with a documented code. Raise a dedicated ValidationError from require() and print its constant message, while keeping type-only output for other exceptions."
+    },
+    {
+      "id": "SLR-08",
+      "title": "Snapshot regression tests compare resolved roots to unresolved temp paths and fail on symlinked temp dirs",
+      "severity": "low",
+      "category": "test_portability",
+      "location": "tests/test_reviews.py::IntakeTests.test_rows_are_parsed_from_the_same_bytes_whose_hash_was_checked (`reader.root == csv_path.parent`); ::test_study_uses_observations_from_verified_packet_bytes (`reader.root == packet`)",
+      "evidence": "PacketVerifier.root is resolve_path(root), but csv_path.parent and packet come from tempfile without resolution. Where the temp directory is behind a symlink (e.g. macOS /var -> /private/var), the injected concurrent edit never fires. The first test then fails `len(reads) == 1`, and the second fails assertRaises on re-verify. They fail rather than pass vacuously, but the BUG-006/BUG-007 evidence is platform-dependent.",
+      "reproduction": "Run with TMPDIR pointing at a symlinked directory. The comparison is False, so no edit happens and both tests fail.",
+      "suggested_fix": "Compare against Path(...).resolve() in the patched hooks, or resolve self.folder in setUp."
+    },
+    {
+      "id": "SLR-09",
+      "title": "Path-boundary check and open are not atomic (symlink swap / FIFO races)",
+      "severity": "low",
+      "category": "security",
+      "location": "scripts/verify_packet.py::PacketVerifier.path and PacketVerifier.read_bytes",
+      "evidence": "path() resolves `self.root / relative` and checks is_relative_to, then read_bytes calls is_file() and opens the unresolved path. A concurrent writer can replace a component with a symlink after the check, so the bounded read leaves the root. It can also substitute a FIFO after is_file(), so open/read blocks. architecture.md states that shared bounded reads 'enforce path boundaries'. The README disclaims filesystem isolation for blinding, not for read confinement.",
+      "reproduction": "Race: between resolve_path(path).is_relative_to(self.root) and path.open('rb'), rename review_returns/a.csv to a symlink to /etc/hostname (or mkfifo in its place). The read follows the new target, or hangs.",
+      "suggested_fix": "Open first, then validate: os.open with O_NOFOLLOW (and O_NONBLOCK), fstat for S_ISREG, and compare the opened file's realpath or device/inode with the checked one. Alternatively, document the non-concurrent-writer assumption explicitly."
+    },
+    {
+      "id": "SLR-10",
+      "title": "ReviewSubmission is documented as 'validated' but direct construction bypasses validation; compare() revalidation is partial",
+      "severity": "informational",
+      "category": "documented_trust_boundary",
+      "location": "scripts/review_tools.py::ReviewSubmission (docstring 'Validated immutable copies'); ReviewStudy.compare",
+      "evidence": "compare() revalidates row values and study hashes but not metadata fields, nor that each rows key equals row['case_id']. architecture.md and issues.md explicitly call direct construction a trusted interface, so this is not a defect. The class docstring overstates it.",
+      "reproduction": "ReviewSubmission(meta_forged_human_independent, {'SL01': row_for_SL02, 'SL02': row_for_SL01, ...}) passes compare() with misaligned labels and DECLARED_ONLY eligibility.",
+      "suggested_fix": "Reword the docstring. Optionally assert key == row['case_id'] and re-run the non-digest parts of validate_metadata in compare(), which costs little."
+    },
+    {
+      "id": "SLR-11",
+      "title": "Contract-required control-case and prevalence-sensitivity reporting is not implemented",
+      "severity": "informational",
+      "category": "absent_future_feature",
+      "location": "docs/evaluation_contract.md ('Report separate agreement ... on author-designated justified-denial controls'; 'Discuss prevalence sensitivity'); scripts/review_tools.py::ReviewStudy.compare",
+      "evidence": "Reports contain per-dimension matrices, marginals, kappa and Wilson intervals. They have no control-subset breakdown, since author designations are deliberately excluded from the public packet, and no prevalence-adjusted statistic. human_gate is hard-coded PENDING and the limitations text mentions control cases, so nothing is overclaimed. A complete gate report would need extra tooling.",
+      "reproduction": "N/A (absent feature).",
+      "suggested_fix": "Before human data exists, define how control designations will be supplied after locking, and which prevalence diagnostics (e.g. PABAK, per-category agreement) will be reported."
+    },
+    {
+      "id": "SLR-12",
+      "title": "collected_at accepts implausible declared times",
+      "severity": "informational",
+      "category": "input_validation / documented_trust_boundary",
+      "location": "scripts/review_tools.py::ReviewStudy.validate_metadata (timestamp check)",
+      "evidence": "Only a timezone-aware ISO datetime is required. A collection time before the packet existed (created_on 2026-11-08), or far in the future, is accepted. Metadata are documented as declarations, so this is a plausibility gap, not an authentication defect.",
+      "reproduction": "collected_at='1970-01-01T00:00:00Z' passes validate_metadata.",
+      "suggested_fix": "Optionally require collected_at >= the packet creation date and flag future times in the report as a provenance warning."
+    },
+    {
+      "id": "SLR-13",
+      "title": "Minor documentation inconsistencies",
+      "severity": "informational",
+      "category": "documentation",
+      "location": "AGENTS.md (final gate list) vs documentation/TESTING.md (gate list); issues.md ('four defect groups' vs BUG-001..005)",
+      "evidence": "AGENTS.md lists verify_packet, unittest and flake8 as the final gate. TESTING.md adds bandit and pip_audit. issues.md describes five bugs as 'four defect groups' plus BUG-005 without stating the grouping. Neither affects runtime behavior.",
+      "reproduction": "N/A.",
+      "suggested_fix": "Align the gate lists and state the grouping explicitly."
+    }
+  ],
+  "limitations": [
+    "Static review only; no test, lint, verifier or demo run was executed, and no statement here reports an observed run result.",
+    "Data files were not supplied (data/cases.json, packet_manifest.json, reviewer_packets/*). Unverified data-specific assumptions: exactly 24 cases and 103 events; every case containing event E1 (assumed by demo_reviews.fixture and the IntakeTests fixture); no case containing E999 or 999+ context items; at least one case having context (test_available_context_reference_is_accepted); the manifest containing the exact substring '\"synthetic\": true' (test_rejects_duplicate_json_keys); reviewer README contents; whether A and B are actually ordered differently; and whether manifest digests match.",
+    "docs/review_protocol.md, the CI workflow, .ai-project.toml and the other linked docs were not supplied, so their claims could not be checked.",
+    "Python-version-specific behavior (Path.resolve on symlink loops in 3.11 vs 3.13, fromisoformat leniency, int digit limits) is reasoned from documented stdlib semantics, not observed.",
+    "Kappa, the Wilson formula and the demo arithmetic (22/24, kappa 7/8 = 0.875; rotated kappa = -0.5; constant labels give undefined kappa) were checked by hand.",
+    "The reproduction and red-test claims in issues.md cannot be confirmed from a static snapshot.",
+    "This review gives no semantic judgment of any synthetic case and makes no human-labeling or product-validation claim."
+  ],
+  "positive_checks": [
+    "load_submission hashes and parses the same byte snapshot, and ReviewStudy reads cases, manifest and rubric from PacketVerifier's post-verify snapshot. This matches the BUG-006/BUG-007 descriptions; verify() clears and rebuilds the snapshot and also clears it on failure.",
+    "Duplicate JSON keys are rejected via object_pairs_hook. The test is meaningful because the manifest is not self-hashed, so without the hook verification would pass.",
+    "Exact CSV header, row count and per-row width checks, plus a duplicate-row and full-set check, mean intake never silently drops rows.",
+    "Per-row reviewer_id, reviewer_kind and rubric_version must match metadata. Metadata are bound to the manifest digest, rubric digest and responses digest.",
+    "agreement() uses exact Fractions. The 0.70 comparison is safe because float rounding is monotonic and 7/10 rounds to the same double as 0.70. The Wilson interval formula is correct, and kappa is null (numeric_gate UNDEFINED) exactly when expected agreement is 1.",
+    "human_gate is unconditionally PENDING in every report and CLI result. Nonhuman inputs give INELIGIBLE_NONHUMAN, and self-declared human inputs give only DECLARED_ONLY.",
+    "CLI errors emit only the exception type name, and reports do not echo rationale text. The instruction-like-text tests are consistent with this.",
+    "Path checks reject absolute paths, '..' escapes and out-of-root symlinks (subject to the race in SLR-09). Reads are bounded at 2 MB.",
+    "The demo refuses existing destinations (exists check plus mkdir exist_ok=False), confines in-root output to runs/ using the resolved path, and labels fixtures synthetic, case_author=True and study_material_seen.",
+    "The reviewer folder must contain exactly the expected file names, which catches hidden extra files. Template blank checks cover the quoted-newline case through newline-preserving CSV parsing.",
+    "Timestamps must be timezone-aware ISO datetimes, and events cannot postdate the cutoff. Null event times are allowed as unknown.",
+    "Test counts claimed in TESTING.md (15 original plus 8 packet contracts; 25 review/demo contracts) match the test methods present.",
+    "Rubric category and reason-code lists currently match DIMENSIONS and REASONS on static comparison."
+  ]
+}

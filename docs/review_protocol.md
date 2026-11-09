@@ -97,3 +97,25 @@ underlying cases. Their timestamps are fictional and no human was evaluated.
 
 These values are reproducible software checks. They establish no resolution
 accuracy, false-positive rate, review-time improvement or commercial value.
+
+## Interrupted demonstrations
+
+Demo output is not an atomic directory transaction. If interrupted, the
+destination may contain partial files; its existence alone does not establish
+completion. A successful run writes demo_manifest.json last. Treat failed runs
+as incomplete, retain them for inspection if useful, and choose a new directory
+for a retry. The generator never automatically deletes or overwrites a directory.
+
+UTF-8 CSVs may include a byte-order mark. The digest remains over the original
+bytes; parsing accepts the BOM without rewriting the original submission.
+Identifiers and elapsed-seconds digits use ASCII. Agreement reports include
+tool_version for interpretation; record the Git commit alongside published
+results. The CLI intentionally returns sanitized error types rather than private
+content; this is a privacy/usability trade-off, not a detailed diagnostic API.
+
+Coordinator preparation before actual human collection must freeze the normative
+protocol revision and supply its submission instructions with the assigned packet.
+The current manifest locks the rubric and evaluation contract, but not this
+operations guide or the Python source. No current structural check certifies
+semantic absence of hints in free text, different reviewer ordering or reviewer
+independence. Canonical packets and exposure records require separate inspection.

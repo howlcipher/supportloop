@@ -15,7 +15,7 @@ here alleges misconduct by a support vendor or proves unmet market demand.
 | BUG-005 | Splitting CSV into lines discarded an embedded quoted newline, accepting it as a blank review answer | Preserve CSV newline semantics with a shared in-memory text stream | test_quoted_newline_is_not_a_blank_review_answer |
 
 New failure tests were run against the prior implementation before fixes: five
-failing assertions and one missing-file error exposed these four defect groups.
+failing assertions and one missing-file error exposed the initial BUG-001 through BUG-004 groups.
 An additional targeted red test reproduced BUG-005 before its correction.
 The original 15 regression contracts were retained. Additional checks exercise
 path escapes and sanitized CLI errors. Author hypotheses remain local; their
@@ -62,3 +62,43 @@ HowlProof's documentation inventory includes normative instructions and evidence
 limits as unverified absolute phrasings. Its byte comparisons are useful but
 do not certify ticket outcomes. Its recorded overall verdict for preparation
 was INSUFFICIENT_EVIDENCE; do not present it as product approval.
+
+## Provider-review follow-up
+
+BUG-009: demo fixture generation assumed every valid case contained E1, although
+the packet contract permits other identifiers. AGY identified the mismatch; a
+valid rehashed non-E1 packet reproduced the failure before correction. Fixtures
+now use the first observed event ID. The new integration contract retains the
+pending human gate and known numeric result.
+
+GAP-003 (low-priority enhancement): demo output is not an atomic directory
+transaction. An interrupted write may leave partial files. This is retained and
+documented; no automatic cleanup or overwrite is attempted. Use a new output
+destination and require successful completion with the final demo manifest.
+Atomic publication may be added if interrupted runs become a recurring need.
+
+BUG-010: overflowing JSON floating literals could produce infinity despite the
+nonfinite-rejection claim. A failing direct parser test now protects NaN,
+Infinity and exponent overflow; finite values remain accepted.
+
+BUG-011: the independence-claim test was confounded by the other reviewer being
+unattested. A source mutation reproduced the vacuity; fully attested opposite
+reviewers now isolate author/exposure flags on both sides and kill that mutant.
+Template width and nonfinite tests are strengthened for the same reason.
+
+BUG-012: snapshot tests compared resolved roots with unresolved temporary paths.
+A symlinked TMPDIR reproduced failures on the prior snapshot; resolved fixture
+paths pass that environment. Completed CSV width, ASCII IDs/digits and UTF-8 BOM
+coverage now protect their documented intake boundaries.
+
+GAP-004 (before M2): freeze and distribute normative submission instructions with
+the actual assigned packet; a future packet revision can lock the operations
+protocol and centralize rubric constants. Current reports identify tool_version
+and published results must record the source commit. No semantic/blinding or
+reviewer-authenticity certification is inferred from structural verification.
+
+GAP-005 (before hosted untrusted intake): defend reads against active concurrent
+filesystem writers with OS/process isolation or safe descriptor-based opening.
+Current local use requires an owned stable directory; it is not a hostile-filesystem
+sandbox. Complete control-subset and provenance-plausibility review before
+passing M2. No automatic acceptance is enabled.
