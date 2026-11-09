@@ -65,3 +65,13 @@ Agreement uses exact rational intermediate counts for observed/expected nominal
 agreement, then outputs JSON floats and approximate Wilson raw-agreement
 intervals. Undefined kappa stays null. No semantic model is called. The numeric
 threshold cannot approve the human gate, even for self-declared human inputs.
+
+## Concurrent filesystem writers
+
+Inputs are local files under the coordinator's control. Path resolution and
+opening are separate operations: the tool does not isolate reads from an active
+writer swapping symlinks or file types concurrently. Run from an owned, stable
+directory, not a shared directory writable by an adversary. Bounded byte reads
+and immutable verified snapshots protect parsed-byte consistency; they do not
+provide kernel-enforced confinement, nonblocking FIFO safety or authenticity.
+Use process/OS isolation before offering untrusted hosted intake.

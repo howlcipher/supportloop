@@ -33,7 +33,7 @@ def fixture(study, output, reviewer_id, labels):
                         "not_expressed",
                         label,
                         sorted(REASONS[label])[0],
-                        "E1",
+                        study.cases[case_id]["events"][0]["id"],
                         "Generated label for arithmetic only; does not assess this case",
                         "",
                         "synthetic",

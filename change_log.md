@@ -51,3 +51,21 @@ pending because reviewers are unavailable. No product release or publication.
 Documented the NARROW decision, verified milestone evidence and remaining human,
 comparison, incident and publication gates. Prepared local review worksheets.
 No runtime, tests, dependencies or evaluation thresholds changed.
+
+## Research showcase and provider review
+
+Added a static GitHub Pages showcase, original project diagram and 1200×630 PNG
+social card, with canonical/Open Graph/Twitter metadata. Deployment publishes
+only site/ after existing regression/security jobs pass on main. No tracking,
+external fonts, framework or runtime dependency was added.
+
+Corrected demo fixtures to cite an event actually present in each valid case,
+with a failing non-E1 packet integration test before the fix. Clarified the
+insufficient-evidence agreement test and retained its category-count assertions.
+Provider findings are preserved with explicit reconciliation and review limits.
+
+Further provider findings corrected finite-float parsing, BOM-aware CSV intake,
+ASCII identifiers/digits, confounded independence tests, row-width coverage and
+symlinked-temporary-directory test portability. Reports include tool_version;
+trust boundaries and before-study prerequisites remain explicit. Original review
+responses and all 17 dispositions are public. Final local suite contains 55 tests.

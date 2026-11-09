@@ -1,0 +1,70 @@
+{
+  "reviewer": "AI Code & Methodology Reviewer (Static Analysis)",
+  "scope": {
+    "commit": "8e9e7411360a3680edcef861bb1ad68cb3f3f9f5",
+    "repository": "SupportLoop public research repository",
+    "components": [
+      "Packet verification (scripts/verify_packet.py)",
+      "Review intake and agreement statistics (scripts/review_tools.py)",
+      "Deterministic demo generator (scripts/demo_reviews.py)",
+      "Test suites (tests/test_packet.py, tests/test_reviews.py, tests/test_demo.py)",
+      "Evaluation methodology and documentation (AGENTS.md, README.md, docs/architecture.md, docs/evaluation_contract.md, docs/rubric.md, documentation/TESTING.md, issues.md)"
+    ]
+  },
+  "findings": [
+    {
+      "id": "SL-01",
+      "title": "Hardcoded event reference 'E1' in demo review fixtures introduces unverified data dependency",
+      "severity": "low",
+      "category": "logic",
+      "location": "scripts/demo_reviews.py#L53",
+      "evidence": "\"E1\",",
+      "reproduction": "In scripts/demo_reviews.py fixture(), each generated row hardcodes 'E1' for evidence_refs across all 24 cases. However, scripts/verify_packet.py validate_case() allows any event identifier matching regex r'E[1-9]\\d*'; it does not require an event named 'E1' to exist. If a structurally valid synthetic case in data/cases.json defines events starting at 'E2' or 'E10', PacketVerifier.verify() passes, but scripts.demo_reviews fails with ValueError: 'unknown evidence reference' during ReviewStudy.load_submission().",
+      "suggested_fix": "Dynamically select a known valid event identifier from the loaded case instead of hardcoding 'E1', e.g.: study.cases[case_id]['events'][0]['id']."
+    },
+    {
+      "id": "SL-02",
+      "title": "Symlink loop resolution in resolve_path catches RuntimeError but omits OSError",
+      "severity": "low",
+      "category": "robustness",
+      "location": "scripts/verify_packet.py#L25-L30",
+      "evidence": "def resolve_path(path):\n    try:\n        return Path(path).resolve()\n    except RuntimeError:\n        raise ValueError(\"invalid filesystem path\") from None",
+      "reproduction": "On POSIX platforms under Python 3.11, resolving a recursive symlink via Path.resolve() can raise OSError (specifically Errno 40: ELOOP 'Too many levels of symbolic links') rather than RuntimeError. When called directly as a Python library API (outside the CLI main() handlers, which broadly catch OSError), resolve_path() leaks OSError rather than normalizing it to ValueError('invalid filesystem path') as intended by BUG-008.",
+      "suggested_fix": "Change the exception handler in resolve_path() to catch both: except (RuntimeError, OSError):"
+    },
+    {
+      "id": "SL-03",
+      "title": "Test test_unknown_category_is_counted_as_a_real_label is misnamed and does not exercise the unknown category",
+      "severity": "informational",
+      "category": "testing",
+      "location": "tests/test_reviews.py#L45-L49",
+      "evidence": "def test_unknown_category_is_counted_as_a_real_label(self):\n    result = review_tools.agreement(CATEGORIES, list(reversed(CATEGORIES)), CATEGORIES)\n    self.assertEqual(result[\"count\"], 3)\n    self.assertEqual(result[\"agree\"], 1)\n    self.assertAlmostEqual(result[\"kappa\"], 0)",
+      "reproduction": "CATEGORIES in tests/test_reviews.py is defined as ['review_needed', 'no_supported_defect', 'insufficient_evidence']. None of these values is 'unknown'. The test actually exercises zero-kappa inverted symmetric off-diagonal ratings. The category 'unknown' exists in DIMENSIONS['outcome'], DIMENSIONS['decision'], and DIMENSIONS['procedure'], but is not tested here.",
+      "suggested_fix": "Rename test_unknown_category_is_counted_as_a_real_label to test_inverted_symmetric_ratings_yield_zero_kappa and add an explicit test verifying agreement calculations over domains containing 'unknown' values."
+    },
+    {
+      "id": "SL-04",
+      "title": "Non-atomic demo directory creation leaves unmanaged partial state on interrupted runs",
+      "severity": "informational",
+      "category": "integrity",
+      "location": "scripts/demo_reviews.py#L82-L106",
+      "evidence": "output.mkdir(parents=True, exist_ok=False)\n...\nwrite_json(output / \"demo_manifest.json\", record)",
+      "reproduction": "build_demo() calls output.mkdir() before generating files. If process termination, SIGINT, or an unexpected I/O failure occurs before demo_manifest.json is written, the output directory remains on disk partially populated. Because build_demo() enforces require(not output.exists(), 'demo destination already exists'), rerun attempts fail immediately until manual filesystem cleanup is performed.",
+      "suggested_fix": "Generate fixture files in a temporary staging directory and atomically move/rename to the final destination upon successful completion, or add cleanup exception handling."
+    }
+  ],
+  "limitations": [
+    "Static review only: performed strictly via static code and documentation inspection without running commands, invoking subagents, or accessing external networks.",
+    "Omission of data files: data/cases.json, reviewer_packets/, and packet_manifest.json were not included in the supplied review bundle. File-level SHA256 integrity, exact 24-case counts, event schemas, blank-template constraints, and data-specific assumptions (such as the presence of event 'E1' and context entries across cases) could not be verified directly against data artifacts.",
+    "Blinded author material: author_material/ and review_returns/ are absent from the public repository by architectural design; ground-truth evaluation, justified-denial control tagging, and external validity against commercial support tickets remain outside this review's verification scope.",
+    "Reviewer status: AI code reviewer only, not a human study participant. No human consensus, clinical/operational validity, or commercial product efficacy is established."
+  ],
+  "positive_checks": [
+    "Strict human gate protection: human_gate is hardcoded to 'PENDING' across PacketVerifier.verify(), ReviewStudy.validate_metadata(), ReviewStudy.compare(), and demo_reviews.build_demo(). Passing the numeric threshold (raw agreement >= 20/24 and kappa >= 0.70) sets numeric_gate to 'MET' but never certifies the human feasibility gate.",
+    "Immutable snapshot defense (BUG-006 & BUG-007): PacketVerifier.verify() captures an immutable MappingProxyType byte snapshot, and ReviewStudy.load_submission() parses the identical in-memory bytes whose SHA256 digest was checked, preventing Time-of-Check to Time-of-Use (TOCTOU) file modification attacks.",
+    "Hardened data parsing (BUG-003, BUG-004, BUG-005): parse_json() rejects duplicate keys and non-finite numbers (NaN, Infinity); parse_csv() uses strict=True with io.StringIO to preserve quoted newlines and validate exact row column counts against FIELDS.",
+    "Exact rational agreement mathematics: Cohen's kappa computes expected and observed proportions via fractions.Fraction prior to floating-point conversion, eliminating intermediate rounding errors; degenerate distributions (expected == 1) return kappa = None and map to numeric_gate: 'UNDEFINED'.",
+    "Wilson score interval: Implemented with exact textbook formulation for nominal agreement uncertainty bounding without claiming population generalization.",
+    "Defense-in-depth security: File reads are bounded to 2 MB (MAX_FILE_BYTES) preventing memory exhaustion; Path.resolve().is_relative_to(root) blocks symlink directory traversal; and CLI error handlers catch standard runtime exceptions to prevent traceback leaks or echoing untrusted case strings."
+  ]
+}

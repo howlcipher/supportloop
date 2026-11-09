@@ -61,3 +61,11 @@ An optional upstream branch studies checkout defaults and accidental long-term
 commitment; see docs/checkout_ux_research.md and RES-005. Keep that research
 distinct from resolution auditing. No real checkout or participant experiment
 has been inspected or run, and this branch does not waive the human-label gates.
+
+## Public showcase
+
+The GitHub Pages site presents only the public methods and preliminary findings,
+with a project-specific social image. Publication is conditional on main's
+regression/security and Pages jobs. docs/site.md describes verification and
+rollback. AGY/Claude review findings are reconciled in docs/provider_reviews.md;
+those AI code reviews do not change M2's pending human-label dependency.

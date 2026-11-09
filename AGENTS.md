@@ -15,7 +15,8 @@ stay ignored. Public verification must work without those local files.
 Use Python 3.11+ and standard library runtime dependencies for packet tooling.
 Run python3 -m unittest discover -s tests -v while changing validation behavior.
 The final gate is python3 scripts/verify_packet.py, unittest, and
-python3 -m flake8 scripts tests. See documentation/TESTING.md.
+python3 -m flake8 scripts tests, Bandit and dependency audit.
+See documentation/TESTING.md for exact commands and the public-export gate.
 
 Read ROADMAP.md and issues.md, take the highest-priority unblocked item, and
 update docs/journal.md at meaningful checkpoints. Reproduce a bug or define a
