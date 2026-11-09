@@ -83,3 +83,13 @@ Prioritized a general six-step support workflow on the public site and documente
 proposed pilot measures. The experience-led case study is the primary goal;
 optional product validation gates remain intact. No incident text, vendor-specific
 findings, personal records or asserted pilot results are published in this update.
+
+## Constructive Blizzard experience case study
+
+Published the owner-authorized Blizzard/World of Warcraft observational narrative
+as a dedicated article and downloadable PDF. It preserves the November 8 cutoff,
+participant attribution, unavailable-source limits and proposed-only measures.
+Neutral wording focuses on checkout clarity, review visibility and complete
+decisions. No private artifacts, unsupported intent finding or entitlement claim
+are included. Article-specific sharing metadata uses the existing project image.
+Public evaluation histories and product gates remain unchanged.

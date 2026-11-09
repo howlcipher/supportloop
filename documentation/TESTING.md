@@ -75,3 +75,12 @@ tests now isolate named constants and overflowing numeric literals. A source
 mutation that ignored author/exposure claims survived the original test and is
 rejected by the strengthened test. Symlinked temporary-directory tests were
 reproduced against the old snapshot and pass with resolved fixture paths.
+
+Named-article publication adds one contract for its separate canonical/social
+identity, declared Markdown source hash, evidence notices, private-path exclusion,
+working local links and actual PDF signature. The old test name suggesting no
+case publication is updated to reflect authorized observational publication; its
+private-input and research-limit checks remain. No backend tests are removed or
+weakened. The full regression and staged public-export gate apply to the final
+article, stylesheet, PDF, source and authority documentation. Test success cannot
+verify the participant's report or establish improvement efficacy.

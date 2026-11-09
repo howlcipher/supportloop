@@ -72,3 +72,12 @@ claiming feasibility. If the existing rubric meets the workflow, stop product
 expansion and keep the open methods or a small integration. If independent
 review fails, revise or stop. Do not promise that further research will support
 building a product.
+
+## Subsequent publication note: November 9, 2026
+
+The owner subsequently approved a constructive narrative naming Blizzard and
+World of Warcraft for the project site/source repository. The separately
+published [observational case](blizzard_case_study.md) remains customer-reported
+through November 8 and not independently verified. This does not change the
+original product recommendation, synthetic benchmark status or evidence gates.
+Original private artifacts and other unpublished drafts are not included.
