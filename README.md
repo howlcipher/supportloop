@@ -10,7 +10,8 @@ work, evidence boundaries and the exact inputs still required.
 
 The [GitHub Pages research showcase](https://howlcipher.github.io/supportloop/)
 presents the public methods, findings and limitations with a dedicated project
-sharing image. See [site operations](docs/site.md) for deployment and preview checks.
+sharing image. Deployment uses pinned Node 24 actions on Ubuntu 24.04.
+See [site operations](docs/site.md) for deployment and preview checks.
 
 ## Current deliverables
 

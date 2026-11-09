@@ -55,3 +55,8 @@ and environment before reporting publication. To roll back, revert the site
 change in a signed commit and let the same gates redeploy. Do not bypass tests
 or delete unrelated owner changes. Editorial claims must track actual evidence;
 new findings need journal and source-document updates before public changes.
+
+The deployment runtime follow-up pins released Node 24 Pages actions and Ubuntu
+24.04. The first deployment succeeded but emitted Node 20 deprecation and
+ubuntu-latest migration annotations; the follow-up removes those moving
+runtime assumptions. Site content and deployment scope are unchanged.
