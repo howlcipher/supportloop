@@ -39,11 +39,13 @@ class AgreementTests(unittest.TestCase):
         self.assertIsNone(result["kappa"])
         self.assertEqual(result["raw_agreement"], 1)
 
-    def test_unknown_category_is_counted_as_a_real_label(self):
+    def test_insufficient_evidence_is_counted_as_a_real_label(self):
         result = review_tools.agreement(CATEGORIES, list(reversed(CATEGORIES)), CATEGORIES)
         self.assertEqual(result["count"], 3)
         self.assertEqual(result["agree"], 1)
         self.assertAlmostEqual(result["kappa"], 0)
+        self.assertEqual(result["marginals"]["left"]["insufficient_evidence"], 1)
+        self.assertEqual(result["marginals"]["right"]["insufficient_evidence"], 1)
 
     def test_invalid_or_misaligned_samples_are_rejected(self):
         for left, right in [([], []), ([CATEGORIES[0]], []), (["invented"], [CATEGORIES[0]])]:
@@ -55,7 +57,7 @@ class IntakeTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
-        self.folder = Path(self.temp.name)
+        self.folder = Path(self.temp.name).resolve()
         self.study = review_tools.ReviewStudy(ROOT)
         self.cases = PacketVerifier(ROOT).read_cases("data/cases.json")
 
@@ -138,6 +140,7 @@ class IntakeTests(unittest.TestCase):
             ("objective", ""),
             ("elapsed_seconds", "-1"),
             ("elapsed_seconds", "1.5"),
+            ("elapsed_seconds", "1٠"),
         ]:
             with self.subTest(field=field), self.assertRaises(ValueError):
                 self.study.load_submission(*self.fixture(mutate=lambda rows: rows[0].update({field: value})))
@@ -273,13 +276,44 @@ class IntakeTests(unittest.TestCase):
         self.assertEqual(next(iter(submission.rows.values()))["objective"], "Synthetic fixture objective")
 
     def test_exposed_or_case_author_claims_do_not_become_independent(self):
+        independent = {"independence_attested": True, "prior_exposure": "none_declared"}
         for claims in [{"case_author": True}, {"prior_exposure": "author_expectations_seen"}]:
-            declared = {"independence_attested": True, "prior_exposure": "none_declared", **claims}
-            left = self.study.load_submission(*self.fixture(kind="human", metadata=declared))
-            right = self.study.load_submission(*self.fixture(name="rater_b", kind="human"))
-            self.assertEqual(
-                self.study.compare(left, right)["review_eligibility"], "REQUIRES_INDEPENDENCE_REVIEW"
-            )
+            for flagged_side in ["left", "right"]:
+                with self.subTest(claims=claims, flagged_side=flagged_side):
+                    left_claims = {**independent, **(claims if flagged_side == "left" else {})}
+                    right_claims = {**independent, **(claims if flagged_side == "right" else {})}
+                    left = self.study.load_submission(*self.fixture(kind="human", metadata=left_claims))
+                    right = self.study.load_submission(
+                        *self.fixture(name="rater_b", kind="human", metadata=right_claims)
+                    )
+                    self.assertEqual(
+                        self.study.compare(left, right)["review_eligibility"], "REQUIRES_INDEPENDENCE_REVIEW"
+                    )
+
+    def test_completed_csv_width_is_not_silently_truncated(self):
+        for change in [lambda row: row.append(""), lambda row: row.append("extra"), lambda row: row.pop()]:
+            csv_path, meta_path = self.fixture()
+            with csv_path.open(newline="") as handle:
+                table = list(csv.reader(handle))
+            change(table[1])
+            with csv_path.open("w", newline="") as handle:
+                csv.writer(handle).writerows(table)
+            metadata = json.loads(meta_path.read_text())
+            metadata["responses_sha256"] = hashlib.sha256(csv_path.read_bytes()).hexdigest()
+            meta_path.write_text(json.dumps(metadata))
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                self.study.load_submission(csv_path, meta_path)
+
+    def test_utf8_bom_csv_is_accepted_without_changing_hashed_bytes(self):
+        csv_path, meta_path = self.fixture()
+        original = b"\xef\xbb\xbf" + csv_path.read_bytes()
+        csv_path.write_bytes(original)
+        meta = json.loads(meta_path.read_text())
+        meta["responses_sha256"] = hashlib.sha256(original).hexdigest()
+        meta_path.write_text(json.dumps(meta))
+        submission = self.study.load_submission(csv_path, meta_path)
+        self.assertEqual(len(submission.rows), 24)
+        self.assertEqual(csv_path.read_bytes(), original)
 
     def test_symlink_loop_errors_are_sanitized_across_python_versions(self):
         csv_path, _ = self.fixture()

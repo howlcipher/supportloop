@@ -1,6 +1,8 @@
 """Reproduce arithmetic demonstrations without inventing human study results."""
 
+import hashlib
 import json
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -33,6 +35,36 @@ class DemoTests(unittest.TestCase):
                 self.assertEqual({m["reviewer_kind"] for m in report["provenance"]}, {"synthetic"})
             for path in output.glob("*.csv"):
                 self.assertNotIn("human", path.read_text())
+
+    def test_demo_uses_available_event_references_in_a_valid_packet(self):
+        with tempfile.TemporaryDirectory() as folder:
+            packet = Path(folder) / "packet"
+            packet.mkdir()
+            for name in ["packet_manifest.json", "data", "docs", "reviewer_packets"]:
+                source = ROOT / name
+                if source.is_dir():
+                    shutil.copytree(source, packet / name)
+                else:
+                    shutil.copy2(source, packet / name)
+            for name in ["data/cases.json", "reviewer_packets/A/cases.json", "reviewer_packets/B/cases.json"]:
+                path = packet / name
+                cases = json.loads(path.read_text())
+                for case in cases:
+                    for event in case["events"]:
+                        if event["id"] == "E1":
+                            event["id"] = "E999"
+                path.write_text(json.dumps(cases))
+            manifest_path = packet / "packet_manifest.json"
+            manifest = json.loads(manifest_path.read_text())
+            for name in manifest["sha256"]:
+                manifest["sha256"][name] = hashlib.sha256((packet / name).read_bytes()).hexdigest()
+            manifest_path.write_text(json.dumps(manifest))
+            output = Path(folder) / "demo"
+            build_demo(packet, output)
+            report = json.loads((output / "agreement_report.json").read_text())
+            self.assertEqual(report["numeric_gate"], "MET")
+            self.assertEqual(report["human_gate"], "PENDING")
+            self.assertNotIn(",E1,", (output / "agreement_synthetic_a.csv").read_text())
 
     def test_demo_does_not_overwrite_an_existing_destination(self):
         with tempfile.TemporaryDirectory() as folder:

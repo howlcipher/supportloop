@@ -1,0 +1,23 @@
+{
+  "commit": "8e9e7411360a3680edcef861bb1ad68cb3f3f9f5",
+  "files": [
+    "AGENTS.md",
+    "README.md",
+    "docs/architecture.md",
+    "docs/evaluation_contract.md",
+    "docs/rubric.md",
+    "documentation/TESTING.md",
+    "issues.md",
+    "requirements_dev.txt",
+    "scripts/__init__.py",
+    "scripts/demo_reviews.py",
+    "scripts/review_tools.py",
+    "scripts/verify_packet.py",
+    "tests/test_demo.py",
+    "tests/test_packet.py",
+    "tests/test_reviews.py"
+  ],
+  "bundle_sha256": "cc18cb033f77510a2ec75abd4c4c576b358d1bce4e4c8e02fc9963dc555f8ef6",
+  "bytes": 89356,
+  "scope": "committed public source only; no private evidence, author hypotheses, returns or drafts"
+}

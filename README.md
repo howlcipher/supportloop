@@ -8,6 +8,10 @@ customer-value or market-demand results.
 See the [discovery completion decision](docs/completion_decision.md) for completed
 work, evidence boundaries and the exact inputs still required.
 
+The [GitHub Pages research showcase](https://howlcipher.github.io/supportloop/)
+presents the public methods, findings and limitations with a dedicated project
+sharing image. See [site operations](docs/site.md) for deployment and preview checks.
+
 ## Current deliverables
 
 1. Twenty-four synthetic histories with 103 observable events in data/cases.json.

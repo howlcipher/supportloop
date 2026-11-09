@@ -161,7 +161,7 @@ class PacketTests(unittest.TestCase):
             self.packet_copy(folder)
             path = folder / "reviewer_packets/A/labels.csv"
             lines = path.read_text().splitlines()
-            lines[1] += ",hidden_answer"
+            lines[1] += ","
             path.write_text("\n".join(lines) + "\n")
             manifest_path = folder / "packet_manifest.json"
             manifest = json.loads(manifest_path.read_text())
@@ -190,11 +190,19 @@ class PacketTests(unittest.TestCase):
                 PACKET.verify(folder)
 
     def test_nonfinite_json_is_rejected(self):
-        with tempfile.TemporaryDirectory() as directory:
-            folder = Path(directory)
-            (folder / "packet_manifest.json").write_text('{"case_count": NaN}')
-            with self.assertRaises(ValueError):
-                PACKET.verify(folder)
+        for literal in [b"NaN", b"Infinity", b"-Infinity", b"1e999", b"-1e999"]:
+            with self.subTest(literal=literal), self.assertRaises(ValueError):
+                PACKET.PacketVerifier.parse_json(b'{"number": ' + literal + b'}')
+        self.assertEqual(PACKET.PacketVerifier.parse_json(b'{"number": 1.25}'), {"number": 1.25})
+
+    def test_identifiers_use_ascii_digits(self):
+        for target, key, value in [(self.case, "id", "SL٠١"),
+                                   (self.case["events"][0], "id", "E1٣")]:
+            original = target[key]
+            target[key] = value
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                PACKET.validate_case(self.case)
+            target[key] = original
 
     def test_packet_reads_cannot_escape_root(self):
         with tempfile.TemporaryDirectory() as directory:

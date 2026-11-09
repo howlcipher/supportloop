@@ -127,3 +127,27 @@ Merged-main CI 42528811778 passed Python 3.11/3.14 regression and security check
 The discovery completion record consolidates the NARROW decision and exact
 external inputs. Local evidence worksheets and review invitations are prepared;
 no reviewer or vendor contacted. No classifier or semantic outcome is claimed.
+
+## Public showcase and requested provider reviews
+
+AGY Gemini and Claude Code separately reviewed the same frozen public source
+snapshot at 8e9e741. AGY returned four findings; Claude returned thirteen after
+an interrupted no-result invocation and a successful retry. Neither received
+private material or the other's output, executed tests or labeled study cases.
+All 17 findings are preserved with dispositions in docs/provider_reviews.md.
+HowlPlane reconciliation records 11 confirmed (corrected), one false positive
+and five explicitly retained out-of-scope limitations/prerequisites.
+
+Coordinator reproductions verified the demo E1 assumption, nonfinite-float
+parser gap, a vacuous independence regression and symlinked-temp test failures.
+Existing contracts were strengthened, not replaced by duplicate assertions.
+The strengthened independence test rejects a mutant that survived the old test.
+Current local regression has 55 tests; hosted evidence must follow final merge.
+
+A semantic HTML/CSS research showcase includes citations, methods, synthetic
+arithmetic, actual limits and a dedicated original PNG sharing card. Only site/
+is deployed, after existing regression/security jobs pass on main. Browser
+checks reproduced and corrected narrow-screen table/navigation overflow; final
+1440/390/320 layouts and keyboard skip navigation passed without page errors.
+GitHub Pages was enabled for workflow publishing. Live publication is pending
+successful integration and deployment; no actual incident or draft was uploaded.

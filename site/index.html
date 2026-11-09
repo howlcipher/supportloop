@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SupportLoop — Answered Is Not Resolved</title>
+  <meta name="description" content="An open engineering study of support resolution integrity. Explore reproducible methods, synthetic cases, findings and explicit evidence boundaries.">
+  <link rel="canonical" href="https://howlcipher.github.io/supportloop/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SupportLoop">
+  <meta property="og:title" content="SupportLoop — Answered Is Not Resolved">
+  <meta property="og:description" content="An open engineering study of support resolution integrity. Evidence over closure metrics. Methods, findings and a reproducible research toolkit.">
+  <meta property="og:url" content="https://howlcipher.github.io/supportloop/">
+  <meta property="og:image" content="https://howlcipher.github.io/supportloop/assets/supportloop-social.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SupportLoop research diagram separating answered, closed and denied statuses from evidence of an outcome.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SupportLoop — Answered Is Not Resolved">
+  <meta name="twitter:description" content="A reproducible engineering study of support resolution integrity, with explicit limits on what the evidence can establish.">
+  <meta name="twitter:image" content="https://howlcipher.github.io/supportloop/assets/supportloop-social.png">
+  <meta name="twitter:image:alt" content="SupportLoop: support events, an evidence check and a separately assessed outcome.">
+  <meta name="theme-color" content="#123f3b">
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="#top" aria-label="SupportLoop home"><img src="assets/mark.svg" width="30" height="30" alt="SupportLoop loop mark">SupportLoop<span class="brand-note">Open engineering research</span></a>
+  <nav aria-label="Main navigation"><a href="#research">Research</a><a href="#methods">Methods</a><a href="#findings">Findings</a><a href="#resources">Resources</a><a class="repo" href="https://github.com/howlcipher/supportloop">GitHub ↗</a></nav>
+</header>
+<main id="main">
+  <section class="hero" id="top" aria-labelledby="title">
+    <div class="hero-copy"><p class="eyebrow">Research note 01 / Howl ecosystem</p>
+    <h1 id="title">Answered is<br><em>not resolved.</em></h1>
+    <p class="dek">What can a support history actually prove about the customer’s outcome?</p>
+    <p class="intro">SupportLoop investigates the distance between a workflow event and a demonstrated result. An open, local-first methods toolkit makes that distinction inspectable.</p>
+    <div class="actions"><a class="button" href="#methods">Explore the methods <span aria-hidden="true">↓</span></a><a class="text-link" href="https://github.com/howlcipher/supportloop/blob/main/docs/engineering_findings.md">Read the engineering report ↗</a></div>
+    </div>
+    <figure class="hero-figure"><img src="assets/evidence-flow.svg" width="560" height="470" alt="A support objective passes through visible replies and status events to an evidence check. Outcome, decision and procedure are assessed separately; missing evidence remains unknown."><figcaption>Conceptual model · not a measured result</figcaption></figure>
+  </section>
+  <aside class="status-strip" aria-label="Research status"><span><i aria-hidden="true"></i>Recommendation: <strong>NARROW</strong></span><span>Human feasibility: pending</span><span>Public methods · synthetic data</span></aside>
+  <section class="section abstract" id="research" aria-labelledby="abstract-title">
+    <div class="section-label">01 / The research question</div>
+    <div><h2 id="abstract-title">A status is an event.<br>A resolution needs evidence.</h2><p class="lead">A reply, a closed ticket and an SLA-compliant response can describe process performance without establishing whether the original objective was achieved.</p><p>That observation does not make every unfavorable outcome a support failure. A properly explained denial may complete a decision. A missing visible update leaves internal activity unknown. Satisfaction, decision completeness, procedural quality and demonstrated outcomes need separate treatment.</p>
+    <div class="callout"><strong>Working hypothesis</strong><p>A portable, local and inspectable evidence contract may complement existing QA. Whether it adds useful value remains unproven.</p></div></div>
+  </section>
+  <section class="section" aria-labelledby="distinctions-title">
+    <div class="section-label">02 / A precise vocabulary</div><div><h2 id="distinctions-title">Four states worth keeping separate.</h2>
+    <div class="table-wrap"><table><caption>Support signals and the conclusions they support</caption><thead><tr><th scope="col">Signal</th><th scope="col">What it establishes</th><th scope="col">What still needs evidence</th></tr></thead><tbody>
+    <tr><th scope="row">Answered</th><td>A response exists.</td><td>Whether it addresses the original objective.</td></tr>
+    <tr><th scope="row">Closed</th><td>A workflow status changed.</td><td>Whether the objective was achieved or a decision completed.</td></tr>
+    <tr><th scope="row">Denied</th><td>A request was rejected.</td><td>The stated reason, applicable context and procedural adequacy.</td></tr>
+    <tr><th scope="row">Supported outcome</th><td>Visible evidence supports a specific result.</td><td>Anything outside the observed history.</td></tr>
+    </tbody></table></div></div>
+  </section>
+  <section class="prior-art band" aria-labelledby="prior-title"><div class="band-inner"><p class="eyebrow">Discovery before implementation</p><h2 id="prior-title">This is not an empty field.</h2><p>Established QA already addresses much of the broad feature list. Zendesk documents solution and comprehension categories; Intercom distinguishes assumed from confirmed resolution. Product documentation demonstrates overlap, not measured adequacy for this proposed workflow.</p><div class="source-links"><a href="https://support.zendesk.com/hc/en-us/articles/7043747123354-Understanding-autoscoring-categories">Zendesk QA categories ↗</a><a href="https://www.intercom.com/help/en/articles/7022438-reporting-metrics-attributes">Intercom metric definitions ↗</a><a href="https://github.com/howlcipher/supportloop/blob/main/docs/prior_art.md">Full prior-art inventory ↗</a></div><p class="band-note">If existing configuration is sufficient, an open rubric or small integration is the better outcome.</p></div></section>
+  <section class="section" id="methods" aria-labelledby="methods-title"><div class="section-label">03 / Reproducible methods</div><div><h2 id="methods-title">Small tooling. Explicit boundaries.</h2><p class="lead">The implemented contribution is review infrastructure, not an automated ticket classifier.</p>
+  <ol class="method-list"><li><div><h3>Observe</h3><p>Twenty-four synthetic histories contain 103 events. Reviewer packets contain observations and a shared rubric, without author expectations.</p></div></li><li><div><h3>Bind the evidence</h3><p>Versioned manifests, strict parsing and immutable byte snapshots detect drift and malformed inputs. Hashes establish byte identity, not truth or authenticity.</p></div></li><li><div><h3>Collect judgments</h3><p>Complete CSV submissions reference visible evidence. Outcome, decision, procedure, satisfaction and audit concern are distinct dimensions.</p></div></li><li><div><h3>Describe agreement</h3><p>Reports retain all categories, confusion matrices, disagreement IDs and undefined kappa. No rows disappear silently.</p></div></li><li><div><h3>Preserve authority</h3><p>The numeric threshold and human gate are separate. Self-declared provenance, AI reviews and generated labels cannot certify an independent human study.</p></div></li></ol>
+  <div class="terminal"><div class="terminal-label">Python 3.11+ · no runtime dependencies</div><pre><code>git clone https://github.com/howlcipher/supportloop.git
+cd supportloop
+python3 scripts/verify_packet.py
+python3 -m scripts.demo_reviews --out runs/first_demo</code></pre></div><p class="small">Choose a new output directory on each run. <a href="https://github.com/howlcipher/supportloop/blob/main/docs/review_protocol.md">Review protocol and full CLI reference ↗</a></p></div></section>
+  <section class="section" id="findings" aria-labelledby="findings-title"><div class="section-label">04 / Findings and limits</div><div><h2 id="findings-title">Demonstrated arithmetic.<br>Unproven product value.</h2><p class="lead">Synthetic arithmetic fixtures exercise the reporting logic. Their labels are arbitrary; they do not judge the underlying tickets.</p>
+  <div class="result-grid"><article><span class="result-kind">Numeric threshold met</span><strong>22 / 24</strong><p>Matching fixture labels<br>κ = 0.875</p></article><article><span class="result-kind">Numeric threshold not met</span><strong>0 / 24</strong><p>Matching fixture labels<br>κ = −0.5</p></article><article><span class="result-kind">Numeric threshold undefined</span><strong>24 / 24</strong><p>Single-category agreement<br>κ is undefined</p></article></div>
+  <p class="result-note">In every demonstration, the human gate remains <strong>PENDING</strong>.</p><div class="two-col"><div><h3>What the software shows</h3><p>Failure-oriented tests exercise intake, arithmetic, snapshot consistency and authority boundaries. A verified event-reference defect was identified in external AI code review; the review record documents its correction and regression evidence.</p><a href="https://github.com/howlcipher/supportloop/blob/main/docs/provider_reviews.md">Provider review and reconciliation ↗</a></div><div><h3>What it does not show</h3><p>No measured ticket accuracy, independent human agreement, customer benefit or market demand. No configured commercial comparison. Publicly exposed synthetic cases cannot become the future locked benchmark.</p><a href="https://github.com/howlcipher/supportloop/blob/main/docs/evaluation_contract.md">Read the evaluation contract ↗</a></div></div>
+  </div></section>
+  <section class="section" aria-labelledby="ecosystem-title"><div class="section-label">05 / Howl ecosystem</div><div><h2 id="ecosystem-title">Coordination without self-certification.</h2><dl class="ecosystem"><div><dt>HowlPlane</dt><dd>Task specifications, verification commands, evidence records and review reconciliation.</dd></div><div><dt>HowlDream</dt><dd>Hypothesis clustering and discovery support. Generated ideas are not evidence of novelty or demand.</dd></div><div><dt>HowlProof</dt><dd>Bounded structural and supplied arithmetic checks. Practical usefulness remains inconclusive.</dd></div><div><dt>HowlWriter</dt><dd>Local documentation normalization and lint. These operations do not certify facts or authorship.</dd></div></dl><p><a href="https://github.com/howlcipher/supportloop/blob/main/docs/howl_workflow.md">Inspected capabilities and integration limits ↗</a></p></div></section>
+  <section class="band next" aria-labelledby="next-title"><div class="band-inner"><p class="eyebrow">06 / The next evidence gate</p><h2 id="next-title">Narrow the claim.<br>Make the next test count.</h2><p>Two independent human reviews come next, followed by a configured existing-tool comparison and an independently labeled benchmark. No human reviews have been collected. If agreement is unstable or a simpler approach is sufficient, revise or stop.</p><p>An upstream UX branch asks whether annual-plan defaults increase accidental commitment. No vendor-specific historical checkout has been inspected. The motivating incident remains outside the public study; no misconduct, eligibility or design-intent conclusion is asserted.</p><a class="button light" href="https://github.com/howlcipher/supportloop/blob/main/docs/completion_decision.md">Read the discovery decision ↗</a></div></section>
+  <section class="section resources" id="resources" aria-labelledby="resources-title"><div class="section-label">07 / Open research materials</div><div><h2 id="resources-title">Inspect it. Reproduce it. Challenge it.</h2><div class="resource-grid"><a href="https://github.com/howlcipher/supportloop"><span>01</span><h3>Source &amp; demonstration ↗</h3><p>Python toolkit, synthetic histories and reproducible CLI.</p></a><a href="https://github.com/howlcipher/supportloop/blob/main/docs/engineering_findings.md"><span>02</span><h3>Engineering findings ↗</h3><p>Prior art, implementation, falsification and evidence limits.</p></a><a href="https://github.com/howlcipher/supportloop/blob/main/ROADMAP.md"><span>03</span><h3>Gated roadmap ↗</h3><p>Stop/go criteria from feasibility to external validation.</p></a><a href="https://github.com/howlcipher/supportloop/blob/main/issues.md"><span>04</span><h3>Findings &amp; progress ↗</h3><p>Reproduced defects, research dependencies and journal links.</p></a></div></div></section>
+</main>
+<footer><a class="footer-brand" href="#top">SupportLoop</a><p>An open engineering study within the Howl ecosystem.<br>Research preparation · MIT-licensed code and synthetic material · November 2026</p><a href="https://github.com/howlcipher/supportloop/blob/main/SHARING.md">Evidence and sharing boundaries ↗</a></footer>
+</body>
+</html>

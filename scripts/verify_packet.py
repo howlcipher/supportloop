@@ -5,6 +5,7 @@ import csv
 import hashlib
 import io
 import json
+import math
 import re
 import sys
 from datetime import datetime
@@ -49,7 +50,7 @@ def validate_case(case):
     require(isinstance(case, dict), "case must be an object")
     require(set(case) == {"id", "synthetic", "export_scope", "as_of", "context", "events"},
             "case fields differ from observation contract")
-    require(isinstance(case["id"], str) and re.fullmatch(r"SL\d{2}", case["id"]), "invalid case id")
+    require(isinstance(case["id"], str) and re.fullmatch(r"SL[0-9]{2}", case["id"]), "invalid case id")
     require(case["synthetic"] is True, "only explicitly synthetic data accepted")
     require(isinstance(case["export_scope"], str) and
             case["export_scope"] in {"provided_window", "partial_export"}, "invalid export scope")
@@ -64,7 +65,7 @@ def validate_case(case):
         require(isinstance(event, dict) and set(event) == {"id", "at", "kind", "actor", "text"},
                 "invalid event fields")
         identifier = event["id"]
-        require(isinstance(identifier, str) and re.fullmatch(r"E[1-9]\d*", identifier), "invalid event id")
+        require(isinstance(identifier, str) and re.fullmatch(r"E[1-9][0-9]*", identifier), "invalid event id")
         require(identifier not in seen, "duplicate event id")
         seen.add(identifier)
         require(isinstance(event["kind"], str) and event["kind"] in {"message", "status", "artifact"},
@@ -124,10 +125,17 @@ class PacketVerifier:
     def reject_constant(_value):
         raise ValueError("nonfinite JSON constant")
 
+    @staticmethod
+    def finite_float(value):
+        result = float(value)
+        require(math.isfinite(result), "nonfinite JSON number")
+        return result
+
     @classmethod
     def parse_json(cls, content):
         return json.loads(content.decode("utf-8"),
-                          object_pairs_hook=cls.unique_object, parse_constant=cls.reject_constant)
+                          object_pairs_hook=cls.unique_object, parse_constant=cls.reject_constant,
+                          parse_float=cls.finite_float)
 
     def read_json(self, relative):
         return self.parse_json(self.read_bytes(relative))
@@ -135,7 +143,7 @@ class PacketVerifier:
     @staticmethod
     def parse_csv(content):
         """Parse a previously acquired byte snapshot without reading the file again."""
-        return list(csv.reader(io.StringIO(content.decode("utf-8"), newline=""), strict=True))
+        return list(csv.reader(io.StringIO(content.decode("utf-8-sig"), newline=""), strict=True))
 
     def read_csv(self, relative):
         """Preserve quoted newlines for both templates and completed reviews."""
