@@ -69,3 +69,10 @@ ASCII identifiers/digits, confounded independence tests, row-width coverage and
 symlinked-temporary-directory test portability. Reports include tool_version;
 trust boundaries and before-study prerequisites remain explicit. Original review
 responses and all 17 dispositions are public. Final local suite contains 55 tests.
+
+## Deployment runtime follow-up
+
+The first successful Pages deployment reported deprecated Node 20 action
+runtimes. Updated to released, SHA-pinned configure-pages v6.0.0,
+upload-pages-artifact v5.0.0 and deploy-pages v5.0.1. Pinned Ubuntu 24.04 to
+avoid an implicit runner-image migration. Application and site bytes unchanged.

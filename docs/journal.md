@@ -151,3 +151,9 @@ checks reproduced and corrected narrow-screen table/navigation overflow; final
 1440/390/320 layouts and keyboard skip navigation passed without page errors.
 GitHub Pages was enabled for workflow publishing. Live publication is pending
 successful integration and deployment; no actual incident or draft was uploaded.
+
+First publication completed in main workflow 42554771055 at 5599436. Live HTML,
+CSS, SVGs and PNG all returned HTTP 200 and exact source-byte matches. That
+workflow emitted Node 20 Pages-action deprecation and runner-migration notices;
+a small follow-up pins released Node 24 action revisions and Ubuntu 24.04.
+No site content or application behavior changes in that follow-up.
