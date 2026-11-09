@@ -14,7 +14,11 @@ sharing image. Deployment uses pinned Node 24 actions on Ubuntu 24.04.
 See [site operations](docs/site.md) for deployment and preview checks.
 
 The immediate practical deliverable is a [support improvement proposal](docs/support_improvement_proposal.md)
-and an experience-led case-study draft. Optional product validation remains
+and an [experience-led Blizzard case study](https://howlcipher.github.io/supportloop/case-study.html).
+The narrative is customer-reported through November 8, 2026 and not independently
+verified. Its [source text](docs/blizzard_case_study.md) and downloadable PDF explain
+limits and propose improvements; no pilot result or refund entitlement is claimed.
+Optional product validation remains
 gated; it is not a prerequisite for an honestly qualified observational account.
 
 ## Current deliverables
@@ -116,8 +120,9 @@ and completed-review metadata. No prior human returns existed to migrate; old
 version metadata is rejected. No human result or classifier release is implied.
 
 Code and synthetic study material are provided under the [MIT license](LICENSE).
-This repository publication is authorized; publication of any real incident
-or case-study result still requires separate owner review and consent.
+This repository and the bounded Blizzard observational case narrative are
+authorized for publication. Additional private incident artifacts, new destinations
+or empirical claims still require their supporting evidence and appropriate consent.
 
 An [upstream UX research plan](docs/checkout_ux_research.md) examines whether
 annual-plan defaults can make an intended one-month purchase error-prone.

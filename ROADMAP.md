@@ -6,8 +6,9 @@ Python is the available implementation language. No .NET tooling is required.
 ## Current primary goal
 
 Prioritize the experience-led case study and practical support-process proposal.
-The public general proposal contains no actual incident narrative. A named
-incident remains local until material/destination consent is explicit. Product
+The public general proposal is complemented by a separate, owner-authorized
+Blizzard-named observational case study. Its account is not independently verified
+and is excluded from benchmark evaluation; raw private evidence remains local. Product
 benchmarks below are optional engineering expansion gates, not prerequisites
 for a clearly attributed observational case study.
 

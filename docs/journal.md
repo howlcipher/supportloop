@@ -165,3 +165,14 @@ site work now foregrounds the general six-step service proposal. It separates
 observational writing from optional product benchmarks, preserves all evidence
 limits and publishes no actual incident. A destination/material choice for a
 named public case study is pending; no contact or social post is authorized here.
+
+## November 9: constructive named case authorized
+
+The owner explicitly authorized naming the parties while emphasizing professional,
+helpful improvement rather than complaint. The separately published account names
+Blizzard Entertainment and World of Warcraft, records the historical November 8
+cutoff and keeps original artifacts and later status unverified. Loaded language
+is replaced with neutral checkout-inspection questions. A dedicated article and
+PDF share the practical workflow and proposed pilot measures. No company contact
+or LinkedIn post is authorized or initiated. Final deployment evidence follows
+verification; synthetic benchmark data and human gates are unchanged.

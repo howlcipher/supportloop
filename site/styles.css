@@ -470,3 +470,32 @@ footer{
 
 .band a:focus-visible{
   outline-color:var(--amber)}
+
+/* Experience article shares the research site's visual system. */
+.case-hero{max-width:1000px;margin:auto;padding:4rem 6% 2rem}
+.case-hero h1{font-size:clamp(3rem,5.4vw,5rem);max-width:900px}
+.case-hero .dek{max-width:760px}
+.case-actions{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;margin:1.5rem 0}
+.case-article{max-width:1000px;margin:auto;padding:1rem 6% 4rem;overflow-wrap:anywhere}
+.case-article h2{font-size:clamp(1.9rem,3.3vw,2.7rem);margin-top:3rem}
+.case-article p,.case-article li{max-width:800px}
+.case-article li{margin-bottom:1rem}
+.case-article table{font-size:.8rem}
+.case-article .evidence-box{padding:1.3rem 1.5rem;background:#eaf0e6;border-left:3px solid #467859;margin:0 0 2rem}
+.case-article .evidence-box p{margin-bottom:.5rem;font-size:.9rem}
+.case-article .table-wrap:focus-visible{outline:3px solid #9e5b12;outline-offset:4px}
+@media print{
+  @page{size:A4;margin:18mm}
+  body{background:white;color:#183c37;font-size:10pt;line-height:1.5}
+  .masthead,.skip,.case-actions,body>footer{display:none}
+  .case-hero,.case-article{max-width:none;margin:0;padding:0}
+  .case-hero h1{font-size:28pt;margin-bottom:12pt}
+  .case-hero .dek{font-size:12pt}
+  .case-article h2{font-size:16pt;margin-top:20pt;break-after:avoid}
+  .case-article .table-wrap{overflow:visible}
+  .case-article table{min-width:0;font-size:8pt;table-layout:fixed}
+  .case-article th,.case-article td{overflow-wrap:anywhere;padding:6pt}
+  .case-article thead{display:table-header-group}
+  .case-article .evidence-box{padding:10pt}
+  .case-article .evidence-box p{font-size:9pt}
+}

@@ -1,9 +1,10 @@
 # Research showcase operations
 
 The public site is https://howlcipher.github.io/supportloop/.
-Only site/ is uploaded; drafts, actual incident material, author hypotheses and
-review returns are excluded from deployment. The page presents the methods
-milestone, not an approved vendor-specific case study or validated classifier.
+Only site/ is uploaded. The separately authorized observational case page and
+PDF contain the bounded participant account. Original private artifacts, other
+drafts, author hypotheses and review returns are excluded. The methods milestone
+and the observational account do not establish a validated classifier.
 
 ## Stack and alternatives
 
@@ -60,3 +61,20 @@ The deployment runtime follow-up pins released Node 24 Pages actions and Ubuntu
 24.04. The first deployment succeeded but emitted Node 20 deprecation and
 ubuntu-latest migration annotations; the follow-up removes those moving
 runtime assumptions. Site content and deployment scope are unchanged.
+
+## Named case study
+
+case-study.html presents the owner-authorized Blizzard/World of Warcraft narrative
+with its own canonical URL, project-card metadata and public PDF. The observation
+cutoff remains November 8, 2026; it is not a current-ticket-status claim. The
+source is docs/blizzard_case_study.md, rendered locally with the installed
+Markdown parser and shared site CSS. Its SHA-256 is recorded in the article's
+supportloop:source-sha256 metadata. That hash tracks the declared source revision,
+not the truth of the account or an authentication of the participant.
+
+The checked-in HTML/PDF are publication artifacts, requiring no build dependency
+on Pages. After editing the Markdown source, regenerate the article body and PDF,
+update the source digest and run the article publication/links tests. The PDF is
+printed from the article using shared print CSS. Tests verify the source binding,
+evidence notices, separate share URL, local assets and PDF signature; editorial
+review remains necessary for meaning and tone. No private drafts are uploaded.

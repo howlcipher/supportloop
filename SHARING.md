@@ -16,7 +16,20 @@ histories, strict input/reference checks, provenance declarations and descriptiv
 agreement. Current software checks support these implementation claims. They do
 not support resolution accuracy, reduced customer effort or a new market gap.
 
-## Review local drafts before posting
+## Authorized observational case
+
+The owner authorized naming Blizzard Entertainment and World of Warcraft in the
+constructive case study on the project site/source repository. Share
+https://howlcipher.github.io/supportloop/case-study.html or its public PDF. The
+narrative is customer-reported through November 8, 2026, not independently
+verified, and separate from synthetic performance evaluation. It publishes no
+account identifiers or original private artifacts. No entitlement, SLA breach,
+internal-review finding or validated improvement is asserted.
+
+This permission does not authorize sending messages to Blizzard or posting on
+LinkedIn. Other private drafts and original evidence remain local.
+
+## Review other local drafts before posting
 
 The coordinator keeps a LinkedIn article, preliminary case-study draft and
 recipient technical brief in ignored publication_drafts/. These are AI-assisted

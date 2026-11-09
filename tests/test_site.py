@@ -1,5 +1,6 @@
 """Protect public-page assets, share metadata and navigation boundaries."""
 
+import hashlib
 import struct
 import unittest
 from html.parser import HTMLParser
@@ -18,12 +19,15 @@ class Page(HTMLParser):
         self.links = []
         self.meta = {}
         self.images = []
+        self.canonical = None
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         self.tags.append(tag)
         if "id" in attrs:
             self.ids.add(attrs["id"])
+        if tag == "link" and attrs.get("rel") == "canonical":
+            self.canonical = attrs.get("href")
         if tag == "meta":
             self.meta[attrs.get("property", attrs.get("name"))] = attrs.get("content")
         if tag == "a":
@@ -33,9 +37,9 @@ class Page(HTMLParser):
 
 
 class SiteTests(unittest.TestCase):
-    def page(self):
+    def page(self, filename="index.html"):
         parser = Page()
-        parser.feed((ROOT / "index.html").read_text())
+        parser.feed((ROOT / filename).read_text())
         return parser
 
     def test_social_preview_is_a_project_image_with_real_dimensions(self):
@@ -70,13 +74,46 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(page.tags.count("h1"), 1)
         self.assertNotIn("script", page.tags)
 
-    def test_site_has_no_local_private_files_or_case_publication(self):
+    def test_site_keeps_private_inputs_out_and_research_limits_explicit(self):
         text = (ROOT / "index.html").read_text()
         for forbidden in ["publication_drafts/", "private_evidence/", "author_material/", "review_returns/"]:
             self.assertNotIn(forbidden, text)
         self.assertIn("Human feasibility: pending", text)
         self.assertIn("Synthetic arithmetic", text)
         self.assertIn("No measured ticket accuracy", text)
+
+    def test_authorized_case_has_own_share_identity_and_evidence_limits(self):
+        page = self.page("case-study.html")
+        url = BASE + "case-study.html"
+        self.assertEqual(page.canonical, url)
+        self.assertEqual(page.meta["og:url"], url)
+        self.assertEqual(page.meta["og:image"], BASE + "assets/supportloop-social.png")
+        self.assertEqual(page.meta["twitter:image"], page.meta["og:image"])
+        source = ROOT.parent / "docs/blizzard_case_study.md"
+        self.assertEqual(
+            page.meta["supportloop:source-sha256"], hashlib.sha256(source.read_bytes()).hexdigest()
+        )
+        text = (ROOT / "case-study.html").read_text()
+        self.assertIn("Customer-reported account", text)
+        self.assertIn("November 8, 2026", text)
+        self.assertIn("not independently verified", text)
+        self.assertNotIn("almost predatory", text)
+        self.assertEqual(page.tags.count("h1"), 1)
+        self.assertNotIn("script", page.tags)
+        for forbidden in ["publication_drafts/", "private_evidence/", "author_material/", "review_returns/"]:
+            self.assertNotIn(forbidden, text)
+        for href in page.links:
+            parsed = urlsplit(href)
+            if parsed.scheme:
+                self.assertEqual(parsed.scheme, "https")
+            elif href.startswith("#"):
+                self.assertIn(href[1:], page.ids)
+            else:
+                target = (ROOT / parsed.path).resolve()
+                self.assertTrue(target.is_relative_to(ROOT.resolve()))
+                self.assertTrue(target.is_file())
+        pdf = ROOT / "assets/blizzard-support-case-study.pdf"
+        self.assertTrue(pdf.read_bytes().startswith(b"%PDF-"))
 
 
 if __name__ == "__main__":
