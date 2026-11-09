@@ -3,6 +3,14 @@
 Recommendation: NARROW. Progress is gated by evidence, not feature count.
 Python is the available implementation language. No .NET tooling is required.
 
+## Current primary goal
+
+Prioritize the experience-led case study and practical support-process proposal.
+The public general proposal contains no actual incident narrative. A named
+incident remains local until material/destination consent is explicit. Product
+benchmarks below are optional engineering expansion gates, not prerequisites
+for a clearly attributed observational case study.
+
 ## Work order for the next agent
 
 1. Read this roadmap, issues.md, docs/journal.md and the evaluation contract.

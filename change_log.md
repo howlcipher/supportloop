@@ -76,3 +76,10 @@ The first successful Pages deployment reported deprecated Node 20 action
 runtimes. Updated to released, SHA-pinned configure-pages v6.0.0,
 upload-pages-artifact v5.0.0 and deploy-pages v5.0.1. Pinned Ubuntu 24.04 to
 avoid an implicit runner-image migration. Application and site bytes unchanged.
+
+## Practical support improvement proposal
+
+Prioritized a general six-step support workflow on the public site and documented
+proposed pilot measures. The experience-led case study is the primary goal;
+optional product validation gates remain intact. No incident text, vendor-specific
+findings, personal records or asserted pilot results are published in this update.
