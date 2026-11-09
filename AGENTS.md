@@ -34,4 +34,6 @@ Run the complete configured regression on the final tree before pushing; verify
 hosted CI. Sign commits. No fabricated reviewers, metrics or permissions.
 
 The current public edition omits provider and game names at the owner's request.
-Earlier named files are archived locally; Git history is not rewritten.
+Earlier named files and pre-rewrite Git history are archived locally. The owner
+subsequently authorized rewriting published branch history; do not merge old
+clones or private backup refs into the sanitized history.

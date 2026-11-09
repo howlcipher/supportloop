@@ -58,5 +58,6 @@ material as part of running this toolkit. A future completed case study may
 honestly conclude that the proposed product should not be built.
 
 The preferred public edition omits company and game names. The named edition is
-archived locally. Earlier commits and pull requests retain it; copies, caches and
-reported details may still identify the provider. No history rewrite was made.
+archived locally. Published branch history was subsequently rewritten with owner authorization.
+Old pull-request references, copies, caches and reported details may still identify
+the provider. See docs/history_rewrite.md for scope and clone migration.

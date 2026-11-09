@@ -100,3 +100,13 @@ Generalized company and game names in current public files, metadata and paths.
 Renamed the source and regenerated the PDF; preserved the checkout-selection
 concern and all evidence qualifications. Earlier named files are archived locally.
 Git history and earlier pull requests retain the previous edition.
+
+## Authorized branch-history rewrite
+
+Rewrote the ten published commits to redact company/game names from historical
+text, filenames and commit messages; removed the historical named PDF. Preserved
+the commit sequence and authorship, signed replacement commits with current
+committer provenance, and archived the original history and commit map privately.
+The current publication tree was unchanged by redaction. Historical revisions are
+edited records, not byte-identical reproductions of their original publications.
+Updated clone-migration guidance and hosting-retention limits.

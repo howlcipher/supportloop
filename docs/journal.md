@@ -185,3 +185,14 @@ renamed public artifacts. Earlier entries above were editorially generalized;
 the original Git history remains intact. Existing publication tests were updated
 for renamed assets and the explicit provider-omission notice, and failed before
 the changes. No incident verification or new outcome is claimed.
+
+## Authorized history rewrite follow-up
+
+After the current-edition cleanup, the owner explicitly requested a history
+rewrite. Verified a private Git bundle, rewrote all ten published commits and
+verified each replacement signature. A scan of replacement commit objects,
+filenames and 141 unique blobs found no company/game names; the prior named PDF
+was removed. The tip tree was identical before the documentation follow-up.
+Earlier journal entries describe the state at the time; their statements about
+retained history are superseded by this entry for the published branch. Old
+pull-request references and externally retained copies remain outside that claim.

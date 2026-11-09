@@ -129,5 +129,7 @@ annual-plan defaults can make an intended one-month purchase error-prone.
 This remains a hypothesis, not a verified finding about a vendor or its intent.
 
 The current public edition omits company and game names to focus on process
-improvement. Earlier Git commits retain the named edition; this is an editorial
-revision, not a history purge or a guarantee of de-identification.
+improvement. Published branch history was subsequently rewritten with owner authorization.
+Old pull-request references, caches and external clones may retain the earlier
+edition; this is not a guarantee of de-identification. See the
+[history rewrite record](docs/history_rewrite.md) before using an older clone.
