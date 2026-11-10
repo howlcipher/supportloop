@@ -33,7 +33,9 @@ this decision does not waive them.
 The implementation milestone is merged in [PR 1](https://github.com/howlcipher/supportloop/pull/1),
 commit `4c5be0d74d6f5cc88bacaebce8c5e7003d7e7a94`, with
 [successful regression/security CI](https://github.com/howlcipher/supportloop/actions/runs/42528811778).
-Those results describe that source snapshot; later changes require their own checks.
+Those results describe that original source snapshot; later changes require
+their own checks. After the authorized history rewrite, the corresponding
+rewritten commit is `134f2eb`. This mapping does not rerun or redate the old CI.
 See [review reconciliation](review_m1.md) and [testing scope](../documentation/TESTING.md).
 
 ## What can be shared now

@@ -101,8 +101,9 @@ add a classifier before the human and benchmark gates are satisfied.
 
 ## Scope and limitations
 
-Established support QA already handles solution quality, custom rubrics, effort,
-reopening and inferred resolution. The unvalidated gap is a portable, local,
+Established support QA documents solution-offered checks, custom rubrics, effort,
+reopening and inferred resolution. Offering a solution does not prove execution.
+The unvalidated gap is a portable, local,
 inspectable evidence contract. We may conclude that a rubric or an integration
 is more useful than a separate product.
 
@@ -133,3 +134,8 @@ improvement. Published branch history was subsequently rewritten with owner auth
 Old pull-request references, caches and external clones may retain the earlier
 edition; this is not a guarantee of de-identification. See the
 [history rewrite record](docs/history_rewrite.md) before using an older clone.
+
+The [comprehensive audit](docs/audit_report.md) records reproduced findings,
+scoped HowlProof results and remaining evidence limits. The optional
+[engineering audit contract](coordination/howlproof_audit.yaml) supplements the
+original documentation-only Proof configuration; neither validates ticket outcomes.

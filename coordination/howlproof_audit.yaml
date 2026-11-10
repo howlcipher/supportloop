@@ -1,0 +1,29 @@
+schema_version: 1
+artifact: supportloop_engineering_audit
+description: >-
+  Bounded software/publication audit: static credential patterns, CI pinning,
+  review CLI misuse, rubric copy integrity, and rendered static-site checks.
+  Does not certify ticket outcomes, source truth, market demand or human labels.
+profiles: [secrets.scan, ci.supplychain, cli.contract, docs.claims, web.links, web.metadata, web.responsive]
+blocking_severity: HIGH
+acceptance:
+  - id: ENGINEERING-CHECKS
+    requirement: checks_pass
+    checks: [secrets.scan, ci.supplychain, cli.contract, docs.claims.sync, web.links, web.metadata, web.responsive]
+  - id: NO-HIGH-FINDINGS
+    requirement: max_findings
+    adversary: SECURITY
+    min_severity: HIGH
+    limit: 0
+cli:
+  command: [python3, -m, scripts.review_tools]
+web:
+  root: site
+  pages: [index.html, case-study.html]
+  viewports: [320, 390, 768, 1440]
+  canonical_prefix: https://howlcipher.github.io/supportloop/
+docs:
+  claim_sources: [README.md, docs/rubric.md, docs/evaluation_contract.md, docs/subscription_case_study.md, docs/support_improvement_proposal.md, docs/prior_art.md]
+  synced_pairs:
+    - [docs/rubric.md, reviewer_packets/A/rubric.md]
+    - [docs/rubric.md, reviewer_packets/B/rubric.md]

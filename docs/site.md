@@ -78,3 +78,16 @@ update the source digest and run the article publication/links tests. The PDF is
 printed from the article using shared print CSS. Tests verify the source binding,
 evidence notices, separate share URL, local assets and PDF signature; editorial
 review remains necessary for meaning and tone. No private drafts are uploaded.
+
+## Discovery files and audit
+
+sitemap.xml lists only the two canonical public HTML pages. robots.txt publishes
+that sitemap location. This is a GitHub Pages project site: a robots.txt served
+under /supportloop/ does not control host-root crawler policy. Crawlers normally
+consult https://howlcipher.github.io/robots.txt, which this repository does not
+manage. These assets do not guarantee indexing, removal from caches or privacy.
+
+The scoped coordination/howlproof_audit.yaml contract checks local links,
+metadata and real browser layouts at 320, 390, 768 and 1440 pixels, plus CLI,
+CI and static security boundaries. It does not replace the project's unittest,
+packet, lint and security commands or establish complete accessibility.

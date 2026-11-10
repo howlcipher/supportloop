@@ -110,3 +110,13 @@ committer provenance, and archived the original history and commit map privately
 The current publication tree was unchanged by redaction. Historical revisions are
 edited records, not byte-identical reproductions of their original publications.
 Updated clone-migration guidance and hosting-retention limits.
+
+## Comprehensive engineering and evidence audit
+
+Added a bounded HowlProof contract covering credential patterns, CI pinning,
+review CLI misuse, rubric copies, site references, metadata and rendered layout.
+The initial pass rejected missing discovery assets; added a canonical sitemap
+and robots.txt after a failing regression contract. Clarified project-site crawler
+limits, current roadmap scope, pre-rewrite provenance and prior-art semantics.
+Runtime code, packet observations, rubric and human-feasibility gates are unchanged.
+Findings and residual research/security limits are documented in the audit report.
