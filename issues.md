@@ -102,3 +102,18 @@ filesystem writers with OS/process isolation or safe descriptor-based opening.
 Current local use requires an owned stable directory; it is not a hostile-filesystem
 sandbox. Complete control-subset and provenance-plausibility review before
 passing M2. No automatic acceptance is enabled.
+
+## Comprehensive audit: November 10, 2026 UTC
+
+| ID | Severity | Finding and disposition |
+| --- | --- | --- |
+| AUD-001 | Low | HowlProof reproduced missing robots.txt and sitemap.xml. Added a canonical-page sitemap and discovery file after a failing contract test. Project-path robots.txt does not control host-root crawling; no indexing guarantee. |
+| AUD-002 | Low | Roadmap still described the site as methods-only after observational publication. Updated current scope; historical journal entries remain chronological. |
+| AUD-003 | Low | Prior-art shorthand could conflate proposing a solution with verified execution, and understated loop/intent/question overlap. Narrowed wording and refreshed primary-source descriptions without claiming comparative accuracy. |
+| AUD-004 | Low | Review/CI provenance retained old commit IDs after history rewrite without adjacent mapping. Added verified source-tree equivalence and rewritten IDs; original provider records remain untouched. |
+| AUD-005 | Informational | HowlProof's lexical documentation inventory flags normative instructions and evidence limits as absolute phrasing. Retained inventory; it is not proof those statements are false. |
+
+See docs/audit_report.md for evaluation scope, exact outcomes and unresolved gates.
+No new runtime correctness or high-severity security defect was reproduced in
+this pass. Existing GAP-003 through GAP-005 and RES-001 through RES-005 remain;
+absence of a reproduced defect is not proof of exhaustive correctness.

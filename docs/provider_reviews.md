@@ -2,6 +2,11 @@
 
 Both requested providers reviewed commit `8e9e7411360a3680edcef861bb1ad68cb3f3f9f5` from the same frozen public-only source bundle. AGY was requested as Gemini 3.8 Flash High; Claude Code resolved the Opus alias to claude-opus-5-5 according to its runtime metadata. The initial Claude process was interrupted without a result; its successful retry is the review recorded here. No private evidence, publication drafts, author hypotheses or other reviewer findings were supplied.
 
+The original input and provider records retain pre-rewrite commit identifiers.
+The reviewed snapshot maps to rewritten commit `52b0ad1`; both trees have Git
+tree ID `a9b395ac7e8675edce534ca8957b4080bd89e829`. The raw review records
+remain unchanged as historical evidence, not reviews of later changes.
+
 These are independent AI static code/methodology reviews, not independent human labels. Neither provider ran tests or reviewed the new website. Dataset files, full reviewer packets, CI and some linked documents were omitted; raw responses preserve these limitations. Coordinator-side reproductions and final regression are separate evidence. Positive reviewer comments are not treated as blanket certification.
 
 [AGY original response](reviews/agy_static.json) · [Claude original response](reviews/claude_static.json) · [Input identity](reviews/review_input.json) · [Structured dispositions](reviews/reconciled_findings.json)

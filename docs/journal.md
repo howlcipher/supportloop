@@ -196,3 +196,16 @@ was removed. The tip tree was identical before the documentation follow-up.
 Earlier journal entries describe the state at the time; their statements about
 retained history are superseded by this entry for the published branch. Old
 pull-request references and externally retained copies remain outside that claim.
+
+## Comprehensive audit: November 10, 2026 UTC
+
+Audited all three runtime modules, tests, packet contracts, publication, CI and
+research boundaries. The original documentation-only HowlProof configuration
+returned INSUFFICIENT_EVIDENCE with matching rubric copies, as expected. A broader
+explicit engineering contract initially returned REJECT for missing discovery
+files. Added a failing sitemap/discovery regression before adding the assets.
+Also corrected stale roadmap scope, qualified prior-art shorthand and mapped
+pre-rewrite review/CI provenance without editing original review records.
+A deterministic 5,000-sample arithmetic cross-check matched independently
+computed marginal-count kappa and interval containment; it supplies no labels or
+production accuracy. Final reruns and report record the resulting scoped verdict.

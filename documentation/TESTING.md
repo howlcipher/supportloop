@@ -90,3 +90,12 @@ and an explicit omission notice. No backend behavior changes, tests removed or
 duplicate tests added. The source hash, real assets, links and evidence notices
 remain protected. Full regression, public-export checks and browser acceptance
 cover the final edition; a tracked-text and extracted-PDF scan checks names.
+
+The comprehensive audit adds one discovery-file contract: parsed sitemap URLs
+must equal the two canonical public pages, resolve to local publication files
+and remain unique; robots.txt must declare the sitemap. It failed before the
+missing files were added. Existing 56 contracts remain intended and unchanged;
+no obsolete, duplicate or weakened tests were identified in this pass. Runtime
+code is unchanged. Full regression and public export apply to the final tree.
+Manual review, deterministic arithmetic cross-checks and the scoped HowlProof
+checks complement tests; they cannot establish semantic accuracy or human labels.

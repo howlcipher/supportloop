@@ -10,8 +10,8 @@ are distinct facts. A justified denial may complete a support decision while
 leaving the requested benefit unfulfilled. An unseen outcome may remain unknown
 despite a polite response or a closed ticket.
 
-Broad QA functionality overlaps mature products. Zendesk documents solution
-and comprehension categories and customizable autoscoring. Intercom separately
+Broad QA functionality overlaps mature products. Zendesk documents solution-offered
+and comprehension checks and customizable autoscoring. Intercom separately
 defines answered conversations and assumed versus confirmed resolutions.
 Those documents establish documented feature overlap, not measured accuracy or
 adequacy for this proposed workflow. [Zendesk categories](https://support.zendesk.com/hc/en-us/articles/7043747123354-Understanding-autoscoring-categories),

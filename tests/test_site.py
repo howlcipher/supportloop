@@ -3,6 +3,7 @@
 import hashlib
 import struct
 import unittest
+import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -52,6 +53,21 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(data[:8], b"\x89PNG\r\n\x1a\n")
         self.assertEqual(struct.unpack(">II", data[16:24]), (1200, 630))
         self.assertTrue(page.meta["og:image:alt"])
+
+    def test_discovery_files_list_only_canonical_public_pages(self):
+        namespace = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+        sitemap = ET.fromstring((ROOT / "sitemap.xml").read_bytes())
+        locations = [node.text for node in sitemap.findall("s:url/s:loc", namespace)]
+        canonical = [self.page().canonical, self.page("case-study.html").canonical]
+        self.assertEqual(len(locations), len(set(locations)))
+        self.assertEqual(set(locations), set(canonical))
+        robots = (ROOT / "robots.txt").read_text()
+        self.assertIn("User-agent: *", robots)
+        self.assertIn("Sitemap: " + BASE + "sitemap.xml", robots)
+        for location in locations:
+            self.assertTrue(location.startswith(BASE))
+            relative = location.removeprefix(BASE) or "index.html"
+            self.assertTrue((ROOT / relative).is_file())
 
     def test_navigation_and_images_resolve_without_private_material(self):
         page = self.page()
