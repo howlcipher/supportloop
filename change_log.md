@@ -120,3 +120,7 @@ and robots.txt after a failing regression contract. Clarified project-site crawl
 limits, current roadmap scope, pre-rewrite provenance and prior-art semantics.
 Runtime code, packet observations, rubric and human-feasibility gates are unchanged.
 Findings and residual research/security limits are documented in the audit report.
+
+Final audit copy review corrected sentence-initial capitalization in the
+observational account and regenerated its source-bound HTML and tagged PDF.
+No incident fact, observation cutoff or evidence qualification changed.

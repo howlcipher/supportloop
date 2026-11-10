@@ -138,4 +138,5 @@ edition; this is not a guarantee of de-identification. See the
 The [comprehensive audit](docs/audit_report.md) records reproduced findings,
 scoped HowlProof results and remaining evidence limits. The optional
 [engineering audit contract](coordination/howlproof_audit.yaml) supplements the
-original documentation-only Proof configuration; neither validates ticket outcomes.
+original documentation-only Proof configuration; neither validates ticket outcomes. The case source, rendered article and PDF
+remain bound to the same editorial revision.
