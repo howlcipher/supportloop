@@ -142,7 +142,7 @@ improvements that could be evaluated without relaxing policy.
 One reported experience cannot establish prevalence, systemic misconduct,
 manipulative intent or refund entitlement. Its contribution is a bounded account
 of customer uncertainty and a concrete workflow proposal that a team could test.
-the provider's internal evidence and perspective have not been collected here.
+The provider's internal evidence and perspective have not been collected here.
 
 SupportLoop's [public methods demonstration](https://howlcipher.github.io/supportloop/)
 provides supporting research infrastructure. Its synthetic agreement fixtures

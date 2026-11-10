@@ -209,3 +209,7 @@ pre-rewrite review/CI provenance without editing original review records.
 A deterministic 5,000-sample arithmetic cross-check matched independently
 computed marginal-count kappa and interval containment; it supplies no labels or
 production accuracy. Final reruns and report record the resulting scoped verdict.
+
+Final case-text inspection caught one sentence-initial capitalization error left
+by the earlier anonymization. Corrected source/HTML/PDF together; existing
+source-binding contracts and the full final gate cover this editorial follow-up.

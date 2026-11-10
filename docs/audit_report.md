@@ -43,7 +43,7 @@ supply independent human labels or semantic verification.
 | ID | Severity | Evidence | Disposition |
 | --- | --- | --- | --- |
 | AUD-001 | Low | HowlProof web.metadata failed for absent robots.txt and sitemap.xml; the new parsed-sitemap test failed before files existed | Added both files, restricted sitemap entries to current canonical public pages, and verified the fix with HowlProof |
-| AUD-002 | Low | ROADMAP.md still called the published site methods-only although the authorized case was live | Corrected current scope; earlier journal entries remain historical |
+| AUD-002 | Low | ROADMAP.md still called the published site methods-only although the authorized case was live | Corrected current scope and final case-text capitalization; earlier journal entries remain historical |
 | AUD-003 | Low | Prior-art shorthand did not clearly distinguish offering a solution from execution, and understated loop/intent/question overlap | Qualified terminology and refreshed primary-source descriptions; no accuracy or unmet-market claim added |
 | AUD-004 | Low | Adjacent review/CI prose retained original commit IDs after history rewrite without mappings | Added rewritten IDs and verified reviewed-tree equivalence; raw provider responses and input record remain unmodified |
 | AUD-005 | Informational | HowlProof's expanded lexical inventory lists absolute phrasings, including normative instructions and evidence limits | Inventory retained; normative instructions and evidence limits are not false merely because a keyword matched |
